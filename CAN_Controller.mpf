@@ -17,8 +17,8 @@ others = $MODEL_TECH/../modelsim.ini
 ; Verilog Section
 ;
 
-CAN = C:/altera/13.1/CAN_Controller/work
 work = C:/altera/13.1/work
+CAN = C:/altera/13.1/CAN_Controller/work
 [vcom]
 ; VHDL93 variable selects language version as the default. 
 ; Default is VHDL-2002.
@@ -142,7 +142,7 @@ Resolution = ps
 UserTimeUnit = default
 
 ; Default run length
-RunLength = 100
+RunLength = 100 ps
 
 ; Maximum iterations that can be run without advancing simulation time
 IterationLimit = 5000
