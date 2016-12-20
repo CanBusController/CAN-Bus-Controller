@@ -8,8 +8,10 @@ ENTITY CAN_Flip_Flop_TestB IS
 ARCHITECTURE CFFT_bhv of CAN_Flip_Flop_TestB is
 
     COMPONENT CAN_Flip_Flop
-	port(clk, D, E,reset  : in  std_logic; 
-	     Q          : out std_logic     );
+	port(
+		clk, D, E,reset  : in  std_logic; 
+	        Q                : out std_logic 
+	    );
     END COMPONENT ;
 
     signal clk : std_logic := '0';
