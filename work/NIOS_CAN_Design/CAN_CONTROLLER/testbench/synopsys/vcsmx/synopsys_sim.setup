@@ -1,0 +1,35 @@
+
+WORK > DEFAULT
+DEFAULT:                                                                               ./libraries/work/                                                                                 
+work:                                                                                  ./libraries/work/                                                                                 
+rsp_xbar_mux_001:                                                                      ./libraries/rsp_xbar_mux_001/                                                                     
+rsp_xbar_mux:                                                                          ./libraries/rsp_xbar_mux/                                                                         
+rsp_xbar_demux_002:                                                                    ./libraries/rsp_xbar_demux_002/                                                                   
+cmd_xbar_mux_002:                                                                      ./libraries/cmd_xbar_mux_002/                                                                     
+cmd_xbar_mux:                                                                          ./libraries/cmd_xbar_mux/                                                                         
+cmd_xbar_demux_001:                                                                    ./libraries/cmd_xbar_demux_001/                                                                   
+cmd_xbar_demux:                                                                        ./libraries/cmd_xbar_demux/                                                                       
+id_router_002:                                                                         ./libraries/id_router_002/                                                                        
+id_router:                                                                             ./libraries/id_router/                                                                            
+addr_router_001:                                                                       ./libraries/addr_router_001/                                                                      
+addr_router:                                                                           ./libraries/addr_router/                                                                          
+Can_hw_controller_0_avalon_slave_0_translator_avalon_universal_slave_0_agent_rsp_fifo: ./libraries/Can_hw_controller_0_avalon_slave_0_translator_avalon_universal_slave_0_agent_rsp_fifo/
+nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent_rsp_fifo:     ./libraries/nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent_rsp_fifo/    
+irq_mapper:                                                                            ./libraries/irq_mapper/                                                                           
+mm_interconnect_0:                                                                     ./libraries/mm_interconnect_0/                                                                    
+Can_hw_controller_0:                                                                   ./libraries/Can_hw_controller_0/                                                                  
+onchip_memory2_0:                                                                      ./libraries/onchip_memory2_0/                                                                     
+nios2_qsys_0:                                                                          ./libraries/nios2_qsys_0/                                                                         
+CAN_CONTROLLER_inst_conduit_end_bfm:                                                   ./libraries/CAN_CONTROLLER_inst_conduit_end_bfm/                                                  
+CAN_CONTROLLER_inst_resetn_bfm:                                                        ./libraries/CAN_CONTROLLER_inst_resetn_bfm/                                                       
+CAN_CONTROLLER_inst_clk_bfm:                                                           ./libraries/CAN_CONTROLLER_inst_clk_bfm/                                                          
+CAN_CONTROLLER_inst:                                                                   ./libraries/CAN_CONTROLLER_inst/                                                                  
+altera:                                                                                ./libraries/altera/                                                                               
+lpm:                                                                                   ./libraries/lpm/                                                                                  
+sgate:                                                                                 ./libraries/sgate/                                                                                
+altera_mf:                                                                             ./libraries/altera_mf/                                                                            
+altera_lnsim:                                                                          ./libraries/altera_lnsim/                                                                         
+cycloneiv_hssi:                                                                        ./libraries/cycloneiv_hssi/                                                                       
+cycloneiv_pcie_hip:                                                                    ./libraries/cycloneiv_pcie_hip/                                                                   
+cycloneiv:                                                                             ./libraries/cycloneiv/                                                                            
+LIBRARY_SCAN = TRUE

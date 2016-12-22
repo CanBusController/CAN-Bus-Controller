@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/mentor/altera_merlin_width_adapter.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="width_adapter"
+   simulator="modelsim" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/mentor/altera_merlin_address_alignment.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="width_adapter"
+   simulator="modelsim" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/mentor/altera_merlin_burst_uncompressor.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="width_adapter"
+   simulator="modelsim" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/aldec/altera_merlin_width_adapter.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="width_adapter"
+   simulator="riviera" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/aldec/altera_merlin_address_alignment.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="width_adapter"
+   simulator="riviera" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/aldec/altera_merlin_burst_uncompressor.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="width_adapter"
+   simulator="riviera" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0_rsp_xbar_mux_001.vho"
+   type="VHDL"
+   library="rsp_xbar_mux_001" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0_rsp_xbar_mux.vho"
+   type="VHDL"
+   library="rsp_xbar_mux" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0_rsp_xbar_demux_002.vho"
+   type="VHDL"
+   library="rsp_xbar_demux_002" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0_cmd_xbar_mux_002.vho"
+   type="VHDL"
+   library="cmd_xbar_mux_002" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0_cmd_xbar_mux.vho"
+   type="VHDL"
+   library="cmd_xbar_mux" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0_cmd_xbar_demux_001.vho"
+   type="VHDL"
+   library="cmd_xbar_demux_001" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0_cmd_xbar_demux.vho"
+   type="VHDL"
+   library="cmd_xbar_demux" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/mentor/altera_merlin_burst_adapter.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="burst_adapter"
+   simulator="modelsim" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/mentor/altera_merlin_address_alignment.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="burst_adapter"
+   simulator="modelsim" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/aldec/altera_merlin_burst_adapter.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="burst_adapter"
+   simulator="riviera" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/aldec/altera_merlin_address_alignment.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="burst_adapter"
+   simulator="riviera" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0_id_router_002.vho"
+   type="VHDL"
+   library="id_router_002" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0_id_router.vho"
+   type="VHDL"
+   library="id_router" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0_addr_router_001.vho"
+   type="VHDL"
+   library="addr_router_001" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0_addr_router.vho"
+   type="VHDL"
+   library="addr_router" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0_Can_hw_controller_0_avalon_slave_0_translator_avalon_universal_slave_0_agent_rsp_fifo.vho"
+   type="VHDL"
+   library="Can_hw_controller_0_avalon_slave_0_translator_avalon_universal_slave_0_agent_rsp_fifo" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0_nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent_rsp_fifo.vho"
+   type="VHDL"
+   library="nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent_rsp_fifo" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/mentor/altera_merlin_slave_agent.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent"
+   simulator="modelsim" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/mentor/altera_merlin_burst_uncompressor.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent"
+   simulator="modelsim" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/aldec/altera_merlin_slave_agent.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent"
+   simulator="riviera" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/aldec/altera_merlin_burst_uncompressor.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent"
+   simulator="riviera" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/mentor/altera_merlin_master_agent.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_instruction_master_translator_avalon_universal_master_0_agent"
+   simulator="modelsim" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/aldec/altera_merlin_master_agent.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_instruction_master_translator_avalon_universal_master_0_agent"
+   simulator="riviera" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/mentor/altera_merlin_slave_translator.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_jtag_debug_module_translator"
+   simulator="modelsim" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/aldec/altera_merlin_slave_translator.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_jtag_debug_module_translator"
+   simulator="riviera" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/mentor/altera_merlin_master_translator.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_instruction_master_translator"
+   simulator="modelsim" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/aldec/altera_merlin_master_translator.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_instruction_master_translator"
+   simulator="riviera" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/mentor/altera_reset_controller.v"
+   type="VERILOG_ENCRYPT"
+   library="rst_controller"
+   simulator="modelsim" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/mentor/altera_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="rst_controller"
+   simulator="modelsim" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/aldec/altera_reset_controller.v"
+   type="VERILOG_ENCRYPT"
+   library="rst_controller"
+   simulator="riviera" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/aldec/altera_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="rst_controller"
+   simulator="riviera" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_irq_mapper.vho"
+   type="VHDL"
+   library="irq_mapper" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_mm_interconnect_0.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_controller_mm_interconnect_0_nios2_qsys_0_jtag_debug_module_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_controller_mm_interconnect_0_onchip_memory2_0_s1_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_controller_mm_interconnect_0_can_hw_controller_0_avalon_slave_0_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_controller_mm_interconnect_0_nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_controller_mm_interconnect_0_can_hw_controller_0_avalon_slave_0_translator_avalon_universal_slave_0_agent.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_controller_mm_interconnect_0_width_adapter.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_controller_mm_interconnect_0_width_adapter_001.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_controller_mm_interconnect_0_nios2_qsys_0_instruction_master_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_controller_mm_interconnect_0_nios2_qsys_0_data_master_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_vhdl_acf.vhdl"
+   type="VHDL"
+   library="Can_hw_controller_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_vhdl_bsp.vhdl"
+   type="VHDL"
+   library="Can_hw_controller_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_vhdl_btl .vhdl"
+   type="VHDL"
+   library="Can_hw_controller_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_vhdl_crc.vhdl"
+   type="VHDL"
+   library="Can_hw_controller_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_vhdl_fifo.vhdl"
+   type="VHDL"
+   library="Can_hw_controller_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_vhdl_ibo.vhdl"
+   type="VHDL"
+   library="Can_hw_controller_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_vhdl_register.vhdl"
+   type="VHDL"
+   library="Can_hw_controller_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_vhdl_register_asyn.vhdl"
+   type="VHDL"
+   library="Can_hw_controller_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_vhdl_register_asyn_syn.vhdl"
+   type="VHDL"
+   library="Can_hw_controller_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_vhdl_registers.vhdl"
+   type="VHDL"
+   library="Can_hw_controller_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/can_vhdl_top.vhdl"
+   type="VHDL"
+   library="Can_hw_controller_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_onchip_memory2_0.hex"
+   type="HEX"
+   library="onchip_memory2_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_onchip_memory2_0.vhd"
+   type="VHDL"
+   library="onchip_memory2_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0.sdc"
+   type="SDC"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0.vhd"
+   type="VHDL"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_jtag_debug_module_sysclk.vhd"
+   type="VHDL"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_jtag_debug_module_tck.vhd"
+   type="VHDL"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_jtag_debug_module_wrapper.vhd"
+   type="VHDL"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_nios2_waves.do"
+   type="OTHER"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_ociram_default_contents.dat"
+   type="DAT"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_ociram_default_contents.hex"
+   type="HEX"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_ociram_default_contents.mif"
+   type="MIF"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_oci_test_bench.vhd"
+   type="VHDL"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_rf_ram_a.dat"
+   type="DAT"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_rf_ram_a.hex"
+   type="HEX"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_rf_ram_a.mif"
+   type="MIF"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_rf_ram_b.dat"
+   type="DAT"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_rf_ram_b.hex"
+   type="HEX"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_rf_ram_b.mif"
+   type="MIF"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER_nios2_qsys_0_test_bench.vhd"
+   type="VHDL"
+   library="nios2_qsys_0" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/altera_conduit_bfm_vhdl_pkg.vhd"
+   type="VHDL"
+   library="CAN_CONTROLLER_inst_conduit_end_bfm" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/altera_conduit_bfm.vhd"
+   type="VHDL"
+   library="CAN_CONTROLLER_inst_conduit_end_bfm" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/altera_avalon_reset_source.vhd"
+   type="VHDL"
+   library="CAN_CONTROLLER_inst_resetn_bfm" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/altera_avalon_clock_source.vhd"
+   type="VHDL"
+   library="CAN_CONTROLLER_inst_clk_bfm" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/submodules/CAN_CONTROLLER.vhd"
+   type="VHDL"
+   library="CAN_CONTROLLER_inst" />
+ <file
+   path="CAN_CONTROLLER/testbench/CAN_CONTROLLER_tb/simulation/CAN_CONTROLLER_tb.vhd"
+   type="VHDL" />
+ <topLevel name="CAN_CONTROLLER_tb" />
+ <deviceFamily name="cycloneivgx" />
+ <modelMap
+   controllerPath="CAN_CONTROLLER_tb.CAN_CONTROLLER_inst.onchip_memory2_0"
+   modelPath="CAN_CONTROLLER_tb.CAN_CONTROLLER_inst.onchip_memory2_0" />
+</simPackage>
