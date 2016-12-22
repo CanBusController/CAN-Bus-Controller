@@ -4,7 +4,7 @@ use ieee.std_logic_1164.all;
 entity can_flip_flop is  
   port(clk, D, E,reset  : in  std_logic; 
       Q          : out std_logic);
-        
+   
 end can_flip_flop;  
 architecture archi of can_flip_flop is  
   begin  

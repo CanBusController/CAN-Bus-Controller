@@ -10,10 +10,8 @@ architecture archi of can_flip_flop is
   begin  
     process (clk,reset)  
       begin  
-        if (clk'event and clk='1') then  
-          if ( E='1') then  
+        if (clk'event and clk='1' and E='1') then   
             Q <= D;  
-          end if;  
         end if;
         if (reset='1') then 
             Q <= '0';

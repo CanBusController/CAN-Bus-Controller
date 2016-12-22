@@ -1,0 +1,127 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+USE ieee.std_logic_arith.all;
+
+ENTITY can_vhdl_acf IS
+   PORT (
+      clk                     : IN std_logic;   
+      rst                     : IN std_logic;   
+      id                      : IN std_logic_vector(28 DOWNTO 0);   
+      reset_mode              : IN std_logic;   
+      acceptance_code_0       : IN std_logic_vector(7 DOWNTO 0);   
+      acceptance_mask_0       : IN std_logic_vector(7 DOWNTO 0);   
+      go_rx_crc_lim           : IN std_logic;   
+      go_rx_inter             : IN std_logic;   
+      go_error_frame          : IN std_logic;   
+      data0                   : IN std_logic_vector(7 DOWNTO 0);   
+      data1                   : IN std_logic_vector(7 DOWNTO 0);   
+      rtr1                    : IN std_logic;   
+      rtr2                    : IN std_logic;   
+      ide                     : IN std_logic;   
+      no_byte0                : IN std_logic;   
+      no_byte1                : IN std_logic;   
+      id_ok                   : OUT std_logic);   
+END ENTITY can_vhdl_acf;
+
+ARCHITECTURE RTL OF can_vhdl_acf IS
+
+function conv_std_logic(b : boolean) return std_ulogic is
+begin
+  if b then return('1'); else return('0'); end if;
+end;
+
+   SIGNAL match                    :  std_logic;   
+   SIGNAL id_ok_xhdl1              :  std_logic;   
+
+BEGIN
+   id_ok <= id_ok_xhdl1;
+
+   -- Working in basic mode. ID match for standard format (11-bit ID).
+   match <= (((((((CONV_STD_LOGIC(id(3) = acceptance_code_0(0)) OR acceptance_mask_0(0)) AND (CONV_STD_LOGIC(id(4) = acceptance_code_0(1)) OR acceptance_mask_0(1))) AND (CONV_STD_LOGIC(id(5) = acceptance_code_0(2)) OR acceptance_mask_0(2))) AND (CONV_STD_LOGIC(id(6) = acceptance_code_0(3)) OR acceptance_mask_0(3))) AND (CONV_STD_LOGIC(id(7) = acceptance_code_0(4)) OR acceptance_mask_0(4))) AND (CONV_STD_LOGIC(id(8) = acceptance_code_0(5)) OR acceptance_mask_0(5))) AND (CONV_STD_LOGIC(id(9) = acceptance_code_0(6)) OR acceptance_mask_0(6))) AND (CONV_STD_LOGIC(id(10) = acceptance_code_0(7)) OR acceptance_mask_0(7)) ;
+
+
+
+   -- ID ok signal generation
+   
+   PROCESS (clk, rst)
+   BEGIN
+      IF (rst = '1') THEN
+         id_ok_xhdl1 <= '0';    
+      ELSIF (clk'EVENT AND clk = '1') THEN
+         IF (go_rx_crc_lim = '1') THEN
+            -- sample_point is already included in go_rx_crc_lim
+            
+               id_ok_xhdl1 <= match ;    
+
+         ELSE
+            IF ((reset_mode OR go_rx_inter OR go_error_frame) = '1') THEN
+               -- sample_point is already included in go_rx_inter
+               
+               id_ok_xhdl1 <= '0' ;    
+            END IF;
+         END IF;
+      END IF;
+   END PROCESS;
+ENTITY can_vhdl_acf IS
+   PORT (
+      clk                     : IN std_logic;   
+      rst                     : IN std_logic;   
+      id                      : IN std_logic_vector(28 DOWNTO 0);   
+      reset_mode              : IN std_logic;   
+      acceptance_code_0       : IN std_logic_vector(7 DOWNTO 0);   
+      acceptance_mask_0       : IN std_logic_vector(7 DOWNTO 0);   
+      go_rx_crc_lim           : IN std_logic;   
+      go_rx_inter             : IN std_logic;   
+      go_error_frame          : IN std_logic;   
+      data0                   : IN std_logic_vector(7 DOWNTO 0);   
+      data1                   : IN std_logic_vector(7 DOWNTO 0);   
+      rtr1                    : IN std_logic;   
+      rtr2                    : IN std_logic;   
+      ide                     : IN std_logic;   
+      no_byte0                : IN std_logic;   
+      no_byte1                : IN std_logic;   
+      id_ok                   : OUT std_logic);   
+END ENTITY can_vhdl_acf;
+
+ARCHITECTURE RTL OF can_vhdl_acf IS
+
+function conv_std_logic(b : boolean) return std_ulogic is
+begin
+  if b then return('1'); else return('0'); end if;
+end;
+
+   SIGNAL match                    :  std_logic;   
+   SIGNAL id_ok_xhdl1              :  std_logic;   
+
+BEGIN
+   id_ok <= id_ok_xhdl1;
+
+   -- Working in basic mode. ID match for standard format (11-bit ID).
+   match <= (((((((CONV_STD_LOGIC(id(3) = acceptance_code_0(0)) OR acceptance_mask_0(0)) AND (CONV_STD_LOGIC(id(4) = acceptance_code_0(1)) OR acceptance_mask_0(1))) AND (CONV_STD_LOGIC(id(5) = acceptance_code_0(2)) OR acceptance_mask_0(2))) AND (CONV_STD_LOGIC(id(6) = acceptance_code_0(3)) OR acceptance_mask_0(3))) AND (CONV_STD_LOGIC(id(7) = acceptance_code_0(4)) OR acceptance_mask_0(4))) AND (CONV_STD_LOGIC(id(8) = acceptance_code_0(5)) OR acceptance_mask_0(5))) AND (CONV_STD_LOGIC(id(9) = acceptance_code_0(6)) OR acceptance_mask_0(6))) AND (CONV_STD_LOGIC(id(10) = acceptance_code_0(7)) OR acceptance_mask_0(7)) ;
+
+
+
+   -- ID ok signal generation
+   
+   PROCESS (clk, rst)
+   BEGIN
+      IF (rst = '1') THEN
+         id_ok_xhdl1 <= '0';    
+      ELSIF (clk'EVENT AND clk = '1') THEN
+         IF (go_rx_crc_lim = '1') THEN
+            -- sample_point is already included in go_rx_crc_lim
+            
+               id_ok_xhdl1 <= match ;    
+
+         ELSE
+            IF ((reset_mode OR go_rx_inter OR go_error_frame) = '1') THEN
+               -- sample_point is already included in go_rx_inter
+               
+               id_ok_xhdl1 <= '0' ;    
+            END IF;
+         END IF;
+      END IF;
+   END PROCESS;
+
+END ARCHITECTURE RTL;
