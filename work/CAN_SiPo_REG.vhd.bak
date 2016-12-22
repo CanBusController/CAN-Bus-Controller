@@ -2,6 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all; 
  
 entity CAN_SiPo_Reg is  
+  GENERIC (
+      WIDTH                          :  integer := 8);    --  default parameter of the register width
   port(
   clk : in STD_LOGIC;
   reset : in  std_logic;
