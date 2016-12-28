@@ -106,23 +106,23 @@ begin
       if TQ_clk'event and TQ_clk = '1' and  RESET='0' then
               
               if (counter = NTQ) then 
-                counter <= "00000";
+                counter <= "00001";
               else 
                 counter <= counter + "00001";
               end if;
             
               if (Qcounter = "00001" and sync='1') then 
-                  Qcounter <= "00000";
+                  Qcounter <= "00001";
                   sync <='0';
                   seg1<='1';
                   seg2<='0';
               elsif (Qcounter = time_segment1 and seg1='1') then
-                  Qcounter <= "00000";
+                  Qcounter <= "00001";
                   sync <='0';
                   seg1<='0';
                   seg2<='1';
               elsif (Qcounter = PB_SEGMENT2 and seg2='1') then
-                  Qcounter <= "00000";
+                  Qcounter <= "00001";
                   sync <='1';
                   seg1<='0';
                   seg2<='0';  

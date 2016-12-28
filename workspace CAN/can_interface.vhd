@@ -42,7 +42,8 @@ component can_bit_timing_logic is
       -- OUT/IN BSM -- 
       rx_idle                 : OUT std_logic;
       sample_point            : OUT std_logic;     
-      busmon                  : OUT std_logic;   
+      busmon                  : OUT std_logic;
+      hard_sync_enable        : in std_logic;   
       --hard_sync_enable        : in std_logic; 
       bus_drive               : in std_logic);   
          
@@ -54,10 +55,10 @@ begin
 end; 
 
     SIGNAL TQ_clk                            :  std_logic;
-    SIGNAL BIT_mode                          :  std_logic;
     SIGNAL sample_point                      :  std_logic;
     SIGNAL sampled_bit                       :  std_logic;
     SIGNAL rx_idle                           :  std_logic;
+    SIGNAL hard_sync_enable                  :  std_logic;
     
 BEGIN
 
@@ -78,6 +79,7 @@ BEGIN
       time_reg => time_reg,
       sample_point => sample_point,    
       busmon => sampled_bit, 
+      hard_sync_enable => hard_sync_enable,
       bus_drive => bus_drive_tx);   
 
 
