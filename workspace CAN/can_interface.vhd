@@ -44,7 +44,6 @@ component can_bit_timing_logic is
       sample_point            : OUT std_logic;     
       busmon                  : OUT std_logic;
       hard_sync_enable        : in std_logic;   
-      --hard_sync_enable        : in std_logic; 
       bus_drive               : in std_logic);   
          
 end component; 
