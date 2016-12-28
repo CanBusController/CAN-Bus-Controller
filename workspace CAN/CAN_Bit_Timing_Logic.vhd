@@ -16,11 +16,7 @@ ENTITY can_bit_timing_logic IS
       RxCan                       : IN std_logic;   
       TxCan                       : out std_logic;
       -- Bit Timing Conf --
-      baud_r_presc            : IN std_logic_vector(5 DOWNTO 0);   
-      sync_jump_width         : IN std_logic_vector(1 DOWNTO 0); 
-      time_segment1           : IN std_logic_vector(3 DOWNTO 0);   
-      time_segment2           : IN std_logic_vector(2 DOWNTO 0);
-      BIT_TIMING_CONFIG       : IN std_logic;
+      time_reg                : IN std_logic_vector(15 DOWNTO 0);
       -- OUT/IN BSM -- 
       rx_idle                 : OUT std_logic;
       sample_point            : OUT std_logic;     
@@ -63,22 +59,30 @@ end;
     SIGNAL TxCan_i                :  std_logic;
     SIGNAL busmon_i               :  std_logic;
     
-    --synchornisation
+    --time--
+    signal sync_jump_width          :  std_logic_vector(1 DOWNTO 0); 
+    signal time_segment1            :  std_logic_vector(3 DOWNTO 0); 
+    signal time_segment_temp        :  std_logic_vector(5 DOWNTO 0);
+    --synchornisation--
     SIGNAL SYNC_ENABLE            :  std_logic;
     
 
 BEGIN
+  
+sync_jump_width <= time_reg(15 downto 14); 
+time_segment1 <= ('0' & time_reg(2 downto 0)) + ('0' & time_reg(6 downto 4)) ;
+time_segment_temp <= time_reg(13 downto 8) - ('0' & ('0' & (time_segment1 + 1)));
 
 IDLE <= rx_idle_temp or conv_std_logic(RECEIVER='0' and TRANSMITTER ='0');
 RECEIVER <= '1' when IDLE ='0' and TRANSMITTER = '0' else '0';
 TRANSMITTER <= '1' when IDLE = '0' and rx_CAN_i = TxCan_i else '0'; 
     
 
-BIT_TIMING: process(RESET, BIT_TIMING_CONFIG, TQ_clk , rx_CAN_i )
+BIT_TIMING: process(RESET,time_reg,TQ_clk , rx_CAN_i )
 
 variable DIFF:INTEGER;
 begin
-      if RESET='1' or BIT_TIMING_CONFIG='1' then
+      if RESET='1' then
         TxCan <= '1';
         sample_point_i <= '0'; 
         counter <= "00000";       
@@ -92,10 +96,10 @@ begin
         TRANSMITTER <= '0'; 
       end if;
       
-      if (BIT_TIMING_CONFIG'event and BIT_TIMING_CONFIG='0') or (RESET'event and RESET='0')then
+      if (time_reg'event) or (RESET'event and RESET='0')then
             SAMPLE <= time_segment1 + '1';
-            NTQ <= baud_r_presc ;
-            PB_SEGMENT2 <= time_segment2;
+            NTQ <= time_reg (13 downto 8);
+            PB_SEGMENT2 <= time_segment_temp(2 downto 0);
             TRANSMIT_POINT <= '0';
       end if;
       
@@ -139,7 +143,7 @@ begin
                     TRANSMIT_POINT <= '0';
               end if;
               
-              IF ((counter = (SAMPLE + time_segment2)) and (rx_idle_count < 6) and (rx_CAN_i ='1')) THEN
+              IF ((counter = (SAMPLE + PB_SEGMENT2)) and (rx_idle_count < 6) and (rx_CAN_i ='1')) THEN
                     rx_idle_count <= rx_idle_count + "0001";    
                ELSIF (rx_idle_count = "0110" and rx_CAN_i ='1' ) THEN
                     rx_idle_temp <= '1' ;  
@@ -161,12 +165,11 @@ begin
                                 seg2 <= '0';
                             end if;
                  --Generation of TRANSMIT_POINT only if edge lies Information Processing Time after sample point
-                            if counter - 0 & SAMPLE >= "000010" then
+                            if (counter - '0' & SAMPLE ) >= ("000" & sync_jump_width) then
                                    TRANSMIT_POINT <= '1';
                             end if;
                     end if;
               end if;
-
 
 
       elsIF (rx_CAN_i'EVENT AND rx_CAN_i = '0') THEN
@@ -180,7 +183,7 @@ rx_CAN_i <= RxCan;
 sample_point <= SAMPLE_POINT_i;
 busmon_i <= RxCan when SAMPLE_POINT_i ='1';
 busmon <= busmon_i;
-TxCan_i <= bus_drive when TRANSMIT_POINT ='1' else '1';
+TxCan_i <= bus_drive when TRANSMIT_POINT ='1';
 TxCan <= TxCan_i;
 rx_idle <= rx_idle_temp;
 

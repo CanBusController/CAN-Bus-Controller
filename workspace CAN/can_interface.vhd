@@ -8,7 +8,7 @@ ENTITY can_interface IS
    PORT (
       RxCan            : IN std_logic;   
       TxCan            : out std_logic;
-      BTC_out          : in std_logic_vector(15 downto 0 ); 
+      time_reg         : in std_logic_vector(15 downto 0 ); 
       Clk              : in std_logic;
       bus_drive_tx     : in std_logic;
       Reset            : in std_logic);
@@ -38,11 +38,7 @@ component can_bit_timing_logic is
       RxCan                       : IN std_logic;   
       TxCan                       : out std_logic;
       -- Bit Timing Conf --
-      baud_r_presc            : IN std_logic_vector(5 DOWNTO 0);   
-      sync_jump_width         : IN std_logic_vector(1 DOWNTO 0); 
-      time_segment1           : IN std_logic_vector(3 DOWNTO 0);   
-      time_segment2           : IN std_logic_vector(2 DOWNTO 0);
-      BIT_TIMING_CONFIG       : IN std_logic; 
+      time_reg                : IN std_logic_vector(15 DOWNTO 0);
       -- OUT/IN BSM -- 
       rx_idle                 : OUT std_logic;
       sample_point            : OUT std_logic;     
@@ -69,7 +65,7 @@ BEGIN
   CAN_BRP   : can_baudrate_prescaler  port map(
       clk => Clk,   
       rst => Reset,   
-      baud_r_presc => BTC_out(13 downto 8), 
+      baud_r_presc => time_reg (13 downto 8), 
       clk_eQ => TQ_clk );
 
   CAN_BTL    : can_bit_timing_logic  port map(
@@ -79,11 +75,7 @@ BEGIN
       rx_idle => rx_idle, 
       RxCan => RxCan,  
       TxCan => TxCan,
-      baud_r_presc => BTC_out(13 downto 8),  
-      sync_jump_width => BTC_out(15 downto 14), 
-      time_segment1 => BTC_out(7 downto 4),    
-      time_segment2 => BTC_out(2 downto 0), 
-      BIT_TIMING_CONFIG => BIT_mode, 
+      time_reg => time_reg,
       sample_point => sample_point,    
       busmon => sampled_bit, 
       bus_drive => bus_drive_tx);   
