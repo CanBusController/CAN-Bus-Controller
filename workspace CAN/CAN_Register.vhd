@@ -19,7 +19,6 @@ END ENTITY can_register ;
 
 ARCHITECTURE RTL OF can_register IS
 	BEGIN
-		data_out <= data_out_xhdl1;
 		PROCESS(clk,rst)
 
 		BEGIN
