@@ -18,17 +18,17 @@ ENTITY can_register IS
 END ENTITY can_register ;
 
 ARCHITECTURE RTL OF can_register IS
-	SIGNAL data_out_xhdl1 STD_LOGIC_VECTOR(width-1 DOWNTO 0);
 	BEGIN
 		data_out <= data_out_xhdl1;
 		PROCESS(clk,rst)
+
 		BEGIN
-			IF (clk'EVENT AND clk='1') THEN 
-				IF (we='1' AND NOT(rst='1')) THEN
-					data_out_xhdl1<= data_in ;
+			IF(rst='1') THEN
+				data_out<=(OTHERS=>'0');
+			ELSIF (clk'EVENT AND clk='1' AND NOT (rst='1')) THEN 
+				IF (we='1' ) THEN
+					data_out<= data_in ;
 				END IF;
-			ELSIF(rst='1') THEN
-				data_out_xhdl1<=(OTHERS=>'0');
 			END IF;
 		END PROCESS;
 END ARCHITECTURE RTL ;
