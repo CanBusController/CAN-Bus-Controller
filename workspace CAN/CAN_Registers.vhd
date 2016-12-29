@@ -5,77 +5,77 @@ use ieee.std_logic_1164.all ;
 ENTITY can_registers IS 
 	PORT
 	(
-		can_ctrlreg_in 	:	in std_logic (15 downto 0);
-		can_statusreg_in:	in std_logic (15 downto 0);
+		can_ctrlreg_in 	:	in std_logic_vector (15 downto 0);
+		can_statusreg_in:	in std_logic_vector (15 downto 0);
 
-		can_ercntreg_in	:	in std_logic (15 downto 0);
-		can_btreg_in	:		in std_logic (15 downto 0);
-		can_intreg_in 	:		in std_logic (15 downto 0);
-		can_brpreg_in 	:		in std_logic (15 downto 0);
+		can_ercntreg_in	:	in std_logic_vector (15 downto 0);
+		can_btreg_in	:		in std_logic_vector (15 downto 0);
+		can_intreg_in 	:		in std_logic_vector (15 downto 0);
+		can_brpreg_in 	:		in std_logic_vector (15 downto 0);
 
-		can_if1cmdreq_in:	in std_logic (15 downto 0);
-		can_if1cmdm_in	:		in std_logic (15 downto 0);
-		can_if1m1_in	:		in std_logic (15 downto 0);
-		can_if1m2_in	:		in std_logic (15 downto 0);
-		can_if1arbt1_in	:	in std_logic (15 downto 0);
-		can_if1arbt2_in	:	in std_logic (15 downto 0);
-		can_if1msgctrl_in:	in std_logic (15 downto 0);
-
-
-		can_if2cmdreq_in:	in std_logic (15 downto 0); 
-		can_if2cmdreq_in:	in std_logic (15 downto 0);
-		can_if2cmdm_in	:		in std_logic (15 downto 0);
-		can_if2m1_in	:		in std_logic (15 downto 0);
-		can_if2m2_in	:		in std_logic (15 downto 0);
-		can_if2arbt1_in	:	in std_logic (15 downto 0);
-		can_if2arbt2_in	:	in std_logic (15 downto 0);
-		can_if2msgctrl_in:	in std_logic (15 downto 0);
-
-		can_tx2reqreg_in:	in std_logic (15 downto 0);
-		can_tx1reqreg_in:	in std_logic (15 downto 0);
-
-		can_newd1reg_in	:	in std_logic (15 downto 0);
-		can_newd2reg_in	:	in std_logic (15 downto 0);
-
-		can_int1pndreg_in:	in std_logic (15 downto 0);
-		can_int2pndreg_in:	in std_logic (15 downto 0);
+		can_if1cmdreq_in:	in std_logic_vector (15 downto 0);
+		can_if1cmdm_in	:		in std_logic_vector (15 downto 0);
+		can_if1m1_in	:		in std_logic_vector (15 downto 0);
+		can_if1m2_in	:		in std_logic_vector (15 downto 0);
+		can_if1arbt1_in	:	in std_logic_vector (15 downto 0);
+		can_if1arbt2_in	:	in std_logic_vector (15 downto 0);
+		can_if1msgctrl_in:	in std_logic_vector (15 downto 0);
 
 
+		can_if2cmdreq_in:	in std_logic_vector (15 downto 0); 
+		can_if2cmdreq_in:	in std_logic_vector (15 downto 0);
+		can_if2cmdm_in	:		in std_logic_vector (15 downto 0);
+		can_if2m1_in	:		in std_logic_vector (15 downto 0);
+		can_if2m2_in	:		in std_logic_vector (15 downto 0);
+		can_if2arbt1_in	:	in std_logic_vector (15 downto 0);
+		can_if2arbt2_in	:	in std_logic_vector (15 downto 0);
+		can_if2msgctrl_in:	in std_logic_vector (15 downto 0);
 
-		can_ctrlreg_out :	out std_logic (15 downto 0);
-		can_statusreg_out:	out std_logic (15 downto 0);
+		can_tx2reqreg_in:	in std_logic_vector (15 downto 0);
+		can_tx1reqreg_in:	in std_logic_vector (15 downto 0);
 
-		can_ercntreg_out:	out std_logic (15 downto 0);
-		can_btreg_out	:	out std_logic (15 downto 0);
-		can_inttreg_out	:	out std_logic (15 downto 0);
-		can_brpreg_out	:	out std_logic (15 downto 0);
+		can_newd1reg_in	:	in std_logic_vector (15 downto 0);
+		can_newd2reg_in	:	in std_logic_vector (15 downto 0);
 
-		can_if1cmdreq_out:	out std_logic (15 downto 0);
-		can_if1cmdm_out	:	out std_logic (15 downto 0);
-		can_if1m1_out	:	out std_logic (15 downto 0);
-		can_if1m2_out	:	out std_logic (15 downto 0);
-		can_if1arbt1_out:	out std_logic (15 downto 0);
-		can_if1arbt2_out:	out std_logic (15 downto 0);
-		can_if1msgctrl_out:	out std_logic (15 downto 0);
+		can_int1pndreg_in:	in std_logic_vector (15 downto 0);
+		can_int2pndreg_in:	in std_logic_vector (15 downto 0);
 
 
-		can_if2cmdreq_out:	out std_logic (15 downto 0); 
-		can_if2cmdreq_out:	out std_logic (15 downto 0);
-		can_if2cmdm_out	:	out std_logic (15 downto 0);
-		can_if2m1_out	:	out std_logic (15 downto 0);
-		can_if2m2_out	:	out std_logic (15 downto 0);
-		can_if2arbt1_out:	out std_logic (15 downto 0);
-		can_if2arbt2_out:	out std_logic (15 downto 0);
-		can_if2msgctrl_out:	out std_logic (15 downto 0);
 
-		can_tx2reqreg_out:	out std_logic (15 downto 0);
-		can_tx1reqreg_out:	out std_logic (15 downto 0);
+		can_ctrlreg_out :	out std_logic_vector (15 downto 0);
+		can_statusreg_out:	out std_logic_vector (15 downto 0);
 
-		can_newd1reg_out:	out std_logic (15 downto 0);
-		can_newd2reg_out:	out std_logic (15 downto 0);
+		can_ercntreg_out:	out std_logic_vector (15 downto 0);
+		can_btreg_out	:	out std_logic_vector (15 downto 0);
+		can_inttreg_out	:	out std_logic_vector (15 downto 0);
+		can_brpreg_out	:	out std_logic_vector (15 downto 0);
 
-		can_int1pndreg_out:	out std_logic (15 downto 0);
-		can_int2pndreg_out:	out std_logic (15 downto 0);
+		can_if1cmdreq_out:	out std_logic_vector (15 downto 0);
+		can_if1cmdm_out	:	out std_logic_vector (15 downto 0);
+		can_if1m1_out	:	out std_logic_vector (15 downto 0);
+		can_if1m2_out	:	out std_logic_vector (15 downto 0);
+		can_if1arbt1_out:	out std_logic_vector (15 downto 0);
+		can_if1arbt2_out:	out std_logic_vector (15 downto 0);
+		can_if1msgctrl_out:	out std_logic_vector (15 downto 0);
+
+
+		can_if2cmdreq_out:	out std_logic_vector (15 downto 0); 
+		can_if2cmdreq_out:	out std_logic_vector (15 downto 0);
+		can_if2cmdm_out	:	out std_logic_vector (15 downto 0);
+		can_if2m1_out	:	out std_logic_vector (15 downto 0);
+		can_if2m2_out	:	out std_logic_vector (15 downto 0);
+		can_if2arbt1_out:	out std_logic_vector (15 downto 0);
+		can_if2arbt2_out:	out std_logic_vector (15 downto 0);
+		can_if2msgctrl_out:	out std_logic_vector (15 downto 0);
+
+		can_tx2reqreg_out:	out std_logic_vector (15 downto 0);
+		can_tx1reqreg_out:	out std_logic_vector (15 downto 0);
+
+		can_newd1reg_out:	out std_logic_vector (15 downto 0);
+		can_newd2reg_out:	out std_logic_vector (15 downto 0);
+
+		can_int1pndreg_out:	out std_logic_vector (15 downto 0);
+		can_int2pndreg_out:	out std_logic_vector (15 downto 0);
 
 
 

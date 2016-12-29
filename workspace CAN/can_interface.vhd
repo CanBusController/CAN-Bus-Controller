@@ -6,19 +6,86 @@ USE ieee.std_logic_arith.all;
 
 ENTITY can_interface IS
    PORT (
+     
+      
       RxCan            : IN std_logic;   
       TxCan            : out std_logic;
       time_reg         : in std_logic_vector(15 downto 0 ); 
-      Clk              : in std_logic;
-      bus_drive_tx     : in std_logic;
-      Reset            : in std_logic);
+      
+      
+      
+			-- message reg in/out -- 
+
+		rx_data_id1_in	: OUT STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+		rx_data_id2_in	: OUT STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+
+		rx_data_conf_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;	
+
+		rx_data_1_2_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		rx_data_3_4_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		rx_data_5_6_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		rx_data_7_8_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+		rx_data_id1_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		rx_data_id2_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+		rx_data_conf_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+		rx_data_1_2_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		rx_data_3_4_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		rx_data_5_6_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		rx_data_7_8_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+		tx_data_id1_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_id2_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+		tx_data_conf_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+		tx_data_1_2_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_3_4_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_5_6_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_7_8_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+
+		tx_data_id1_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_id2_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+		tx_data_conf_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+		tx_data_1_2_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_3_4_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_5_6_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_7_8_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+		tx_data_id1_we	: OUT STD_LOGIC;
+		tx_data_id2_we	: OUT STD_LOGIC;
+
+		tx_data_conf_we	: OUT STD_LOGIC;
+
+		tx_data_1_2_we	: OUT STD_LOGIC;
+		tx_data_3_4_we	: OUT STD_LOGIC;
+		tx_data_5_6_we	: OUT STD_LOGIC;
+		tx_data_7_8_we	: OUT STD_LOGIC;
+
+		rx_data_id1_we	: OUT STD_LOGIC;
+		rx_data_id2_we	: OUT STD_LOGIC;
+
+		rx_data_conf_we	: OUT STD_LOGIC;
+
+		rx_data_1_2_we	: OUT STD_LOGIC;
+		rx_data_3_4_we	: OUT STD_LOGIC;
+		rx_data_5_6_we	: OUT STD_LOGIC;
+		rx_data_7_8_we	: OUT STD_LOGIC;
+		
+		Clk              : in std_logic;
+    Reset            : in std_logic);
  
 END ENTITY can_interface;
 
 
 
 ARCHITECTURE RTL OF can_interface IS
-  
+  signal bus_drive :std_logic;
   
 component can_baudrate_prescaler is
    PORT (
@@ -79,7 +146,7 @@ BEGIN
       sample_point => sample_point,    
       busmon => sampled_bit, 
       hard_sync_enable => hard_sync_enable,
-      bus_drive => bus_drive_tx);   
+      bus_drive => bus_drive);   
 
 
 END ARCHITECTURE RTL;
