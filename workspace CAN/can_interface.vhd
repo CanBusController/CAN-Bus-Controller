@@ -12,8 +12,6 @@ ENTITY can_interface IS
       TxCan            : out std_logic;
       time_reg         : in std_logic_vector(15 downto 0 ); 
       
-      
-      
 			-- message reg in/out -- 
 
 		rx_data_id1_in	: OUT STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
@@ -87,6 +85,82 @@ END ENTITY can_interface;
 ARCHITECTURE RTL OF can_interface IS
   signal bus_drive :std_logic;
   
+  
+component BSP_INTERFACE is
+  PORT (
+      -- Avalon bus in/out -- 
+		clk: IN STD_LOGIC;
+		read, write : IN STD_LOGIC;
+		address : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
+		writedata : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		readdata : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+
+
+			-- message reg in/out -- 
+
+		rx_data_id1_in	: OUT STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+		rx_data_id2_in	: OUT STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+
+		rx_data_conf_in	: OUT STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;	
+
+		rx_data_1_2_in	: OUT STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+		rx_data_3_4_in	: OUT STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+		rx_data_5_6_in	: OUT STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+		rx_data_7_8_in	: OUT STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+
+		rx_data_id1_out: IN STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+		rx_data_id2_out: IN STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+
+		rx_data_conf_out: IN STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+
+		rx_data_1_2_out: IN STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+		rx_data_3_4_out: IN STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+		rx_data_5_6_out: IN STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+		rx_data_7_8_out: IN STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+
+		tx_data_id1_in	: OUT STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+		tx_data_id2_in	: OUT STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+
+		tx_data_conf_in	: OUT STD_LOGIC_VECTOR( 15 DOWNTO 0 ) ;
+
+		tx_data_1_2_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_3_4_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_5_6_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_7_8_in	: OUT STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+
+		tx_data_id1_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_id2_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+		tx_data_conf_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+		tx_data_1_2_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_3_4_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_5_6_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+		tx_data_7_8_out: IN STD_LOGIC_VECTOR ( 15 DOWNTO 0 ) ;
+
+		tx_data_id1_we	: OUT STD_LOGIC;
+		tx_data_id2_we	: OUT STD_LOGIC;
+
+		tx_data_conf_we	: OUT STD_LOGIC;
+
+		tx_data_1_2_we	: OUT STD_LOGIC;
+		tx_data_3_4_we	: OUT STD_LOGIC;
+		tx_data_5_6_we	: OUT STD_LOGIC;
+		tx_data_7_8_we	: OUT STD_LOGIC;
+
+		rx_data_id1_we	: OUT STD_LOGIC;
+		rx_data_id2_we	: OUT STD_LOGIC;
+
+		rx_data_conf_we	: OUT STD_LOGIC;
+
+		rx_data_1_2_we	: OUT STD_LOGIC;
+		rx_data_3_4_we	: OUT STD_LOGIC;
+		rx_data_5_6_we	: OUT STD_LOGIC;
+		rx_data_7_8_we	: OUT STD_LOGIC
+  );
+END component;
+  
 component can_baudrate_prescaler is
    PORT (
       clk                     : IN std_logic;   
@@ -115,6 +189,8 @@ component can_bit_timing_logic is
          
 end component; 
 
+
+
 function conv_std_logic(b : boolean) return std_ulogic is
 begin
   if b then return('1'); else return('0'); end if;
@@ -125,8 +201,100 @@ end;
     SIGNAL sampled_bit                       :  std_logic;
     SIGNAL rx_idle                           :  std_logic;
     SIGNAL hard_sync_enable                  :  std_logic;
-    
+    SIGNAL read                   :  std_logic := '0';
+    SIGNAL write                  :  std_logic := '0';
+    SIGNAL address                :  STD_LOGIC_VECTOR(5 DOWNTO 0);
+    SIGNAL writedata              :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+    SIGNAL readdata               :  STD_LOGIC_VECTOR(15 DOWNTO 0);
 BEGIN
+
+
+  BSP_INT   : BSP_INTERFACE  port map(
+      -- Avalon bus in/out -- 
+
+    clk => clk,
+    read => read,
+    write => write,
+    address => address,
+    writedata => writedata,
+    readdata => readdata,
+
+
+      -- message reg in/out -- 
+
+    rx_data_id1_in   => rx_data_id1_in,
+    rx_data_id2_in   => rx_data_id2_in,
+
+    rx_data_conf_in  => rx_data_conf_in,
+
+    rx_data_1_2_in   => rx_data_1_2_in,
+    rx_data_3_4_in   => rx_data_3_4_in,
+    rx_data_5_6_in   => rx_data_5_6_in,
+    rx_data_7_8_in   => rx_data_7_8_in,
+
+    rx_data_id1_out  => rx_data_id1_out,
+    rx_data_id2_out  => rx_data_id2_out,
+
+    rx_data_conf_out  => rx_data_conf_out,
+
+    rx_data_1_2_out  => rx_data_1_2_out,
+    rx_data_3_4_out  => rx_data_3_4_out,
+    rx_data_5_6_out => rx_data_5_6_out,
+    rx_data_7_8_out => rx_data_7_8_out,
+
+    tx_data_id1_in   => tx_data_id1_in,
+    tx_data_id2_in   => tx_data_id2_in,
+
+    tx_data_conf_in  => tx_data_conf_in,
+
+    tx_data_1_2_in   => tx_data_1_2_in,
+    tx_data_3_4_in   => tx_data_3_4_in,
+    tx_data_5_6_in   => tx_data_5_6_in,
+    tx_data_7_8_in   => tx_data_7_8_in,
+
+
+    tx_data_id1_out  => tx_data_id1_out,
+    tx_data_id2_out  => tx_data_id2_out,
+
+    tx_data_conf_out => tx_data_conf_out,
+
+    tx_data_1_2_out => tx_data_1_2_out,
+    tx_data_3_4_out => tx_data_3_4_out,
+    tx_data_5_6_out => tx_data_5_6_out,
+    tx_data_7_8_out => tx_data_7_8_out,
+
+    tx_data_id1_we  => tx_data_id1_we,
+    tx_data_id2_we  => tx_data_id2_we,
+
+    tx_data_conf_we => tx_data_conf_we,
+
+    tx_data_1_2_we  => tx_data_1_2_we,
+    tx_data_3_4_we  => tx_data_3_4_we,
+    tx_data_5_6_we  => tx_data_5_6_we,
+    tx_data_7_8_we  => tx_data_7_8_we,
+
+    rx_data_id1_we  => rx_data_id1_we,
+    rx_data_id2_we  => rx_data_id2_we,
+
+    rx_data_conf_we => rx_data_conf_we,
+
+    rx_data_1_2_we  => rx_data_1_2_we,
+    rx_data_3_4_we  => rx_data_3_4_we,
+    rx_data_5_6_we  => rx_data_5_6_we,
+    rx_data_7_8_we  => rx_data_7_8_we
+  );
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   CAN_BRP   : can_baudrate_prescaler  port map(
