@@ -5,12 +5,12 @@ USE ieee.std_logic_1164.all ;
 
 ENTITY can_register IS 
 	GENERIC 
-	( width: integer
+	( width: integer := 16
 		);
 	PORT
 	(
-		data_in 	: IN STD_LOGIC_VECTOR(width-1 DOWNTO 0);
-		data_out 	: OUT STD_LOGIC_VECTOR(width-1 DOWNTO 0);
+		data_in 	: IN STD_LOGIC_VECTOR( width - 1 DOWNTO 0);
+		data_out : OUT STD_LOGIC_VECTOR(width  - 1 DOWNTO 0);
 		we 			: IN STD_LOGIC ;
 		clk			: IN STD_LOGIC ;
 		rst 		: IN STD_LOGIC

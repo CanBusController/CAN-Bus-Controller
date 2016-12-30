@@ -1,6 +1,8 @@
-LIBRARY ieee ;
-USE ieee.std_logic_1164.all ;
+library ieee;
+use ieee.std_logic_1164.all;
 
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 ENTITY CAN_MESSAGE IS 
 	PORT (
@@ -66,14 +68,15 @@ ENTITY CAN_MESSAGE IS
 		rx_data_7_8_we	:	IN STD_LOGIC;
 
 		clk 			:	IN STD_LOGIC;
-		reset 			: 	IN STD_LOGIC
+		reset 	: IN STD_LOGIC
 		);
 	END ENTITY ;
 
 ARCHITECTURE BASIC OF CAN_MESSAGE IS
 
-	CONSTANT size_16 : integer:=16;
-	COMPONENT can_regiter is 
+	CONSTANT size_16 : integer :=16;
+	
+	COMPONENT can_register is 
 		GENERIC ( WIDTH :integer := size_16);
 		PORT (
 			data_in 	:	in std_logic_vector(WIDTH - 1 downto 0);
@@ -86,25 +89,25 @@ ARCHITECTURE BASIC OF CAN_MESSAGE IS
 
 	BEGIN
 
-	RXMSGID1	:	can_regiter generic map (width => size_16) port map (data_in=>rx_data_id1_in	,data_out=>rx_data_id1_out,we =>rx_data_id1_we,clk=> clk,reset=> reset); 
+	RXMSGID1	:	can_register generic map (width => size_16) port map (data_in=>rx_data_id1_in	,data_out=>rx_data_id1_out,we =>rx_data_id1_we,clk=> clk,reset=> reset); 
 
-	RXMSGID2	:	can_regiter generic map (width => size_16) port map (data_in=>rx_data_id2_in,data_out=>rx_data_id2_out,we =>rx_data_id2_we,clk=> clk,reset=> reset);
+	RXMSGID2	:	can_register generic map (width => size_16) port map (data_in=>rx_data_id2_in,data_out=>rx_data_id2_out,we =>rx_data_id2_we,clk=> clk,reset=> reset);
 
-	RXMSGCONF	:	can_regiter generic map (width => size_16) port map (data_in=>rx_data_conf_in,data_out=>rx_data_conf_out,we =>rx_data_conf_we,clk=> clk,reset=> reset);
+	RXMSGCONF	:	can_register generic map (width => size_16) port map (data_in=>rx_data_conf_in,data_out=>rx_data_conf_out,we =>rx_data_conf_we,clk=> clk,reset=> reset);
 
-	RXMSGD12	:	can_regiter generic map (width => size_16) port map (data_in=>rx_data_1_2_in,data_out=>rx_data_1_2_out,we =>rx_data_1_2_we,clk=> clk,reset=> reset);
-	RXMSGD34	:	can_regiter generic map (width => size_16) port map (data_in=>rx_data_3_4_in,data_out=>rx_data_3_4_out,we =>rx_data_3_4_we,clk=> clk,reset=> reset);
-	RXMSGD56	:	can_regiter generic map (width => size_16) port map (data_in=>rx_data_5_6_in,data_out=>rx_data_5_6_out,we =>rx_data_5_6_we,clk=> clk,reset=> reset);
-	RXMSGD78	:	can_regiter generic map (width => size_16) port map (data_in=>rx_data_7_8_in,data_out=>rx_data_7_8_out,we =>rx_data_7_8_we,clk=> clk,reset=> reset);
+	RXMSGD12	:	can_register generic map (width => size_16) port map (data_in=>rx_data_1_2_in,data_out=>rx_data_1_2_out,we =>rx_data_1_2_we,clk=> clk,reset=> reset);
+	RXMSGD34	:	can_register generic map (width => size_16) port map (data_in=>rx_data_3_4_in,data_out=>rx_data_3_4_out,we =>rx_data_3_4_we,clk=> clk,reset=> reset);
+	RXMSGD56	:	can_register generic map (width => size_16) port map (data_in=>rx_data_5_6_in,data_out=>rx_data_5_6_out,we =>rx_data_5_6_we,clk=> clk,reset=> reset);
+	RXMSGD78	:	can_register generic map (width => size_16) port map (data_in=>rx_data_7_8_in,data_out=>rx_data_7_8_out,we =>rx_data_7_8_we,clk=> clk,reset=> reset);
 
-	TXMSGID1	:	can_regiter generic map (width => size_16) port map (data_in=>tx_data_id1_in,data_out=>tx_data_id1_out,we => tx_data_id1_we,clk=> clk,reset=> reset);
-	TXMSGID2	:	can_regiter generic map (width => size_16) port map (data_in=>tx_data_id2_in,data_out=>tx_data_id2_out,we =>tx_data_id2_we,clk=> clk,reset=> reset);
+	TXMSGID1	:	can_register generic map (width => size_16) port map (data_in=>tx_data_id1_in,data_out=>tx_data_id1_out,we => tx_data_id1_we,clk=> clk,reset=> reset);
+	TXMSGID2	:	can_register generic map (width => size_16) port map (data_in=>tx_data_id2_in,data_out=>tx_data_id2_out,we =>tx_data_id2_we,clk=> clk,reset=> reset);
 
-	TXMSGCONF	:	can_regiter generic map (width => size_16) port map (data_in=>tx_data_conf_in,data_out=>tx_data_conf_out,we =>tx_data_conf_we,clk=> clk,reset=> reset);
+	TXMSGCONF	:	can_register generic map (width => size_16) port map (data_in=>tx_data_conf_in,data_out=>tx_data_conf_out,we =>tx_data_conf_we,clk=> clk,reset=> reset);
 
-	TXMSGD12	:	can_regiter generic map (width => size_16) port map (data_in=>tx_data_1_2_in,data_out=>tx_data_1_2_out,we =>tx_data_1_2_we,clk=> clk,reset=> reset);
-	TXMSGD34	:	can_regiter generic map (width => size_16) port map (data_in=>tx_data_3_4_in,data_out=>tx_data_3_4_out,we =>tx_data_3_4_we,clk=> clk,reset=> reset);
-	TXMSGD56	:	can_regiter generic map (width => size_16) port map (data_in=>tx_data_5_6_in,data_out=>tx_data_5_6_out,we =>tx_data_5_6_we,clk=> clk,reset=> reset);
-	TXMSGD78	:	can_regiter generic map (width => size_16) port map (data_in=>tx_data_7_8_in,data_out=>tx_data_7_8_out,we =>tx_data_7_8_we,clk=> clk,reset=> reset);
+	TXMSGD12	:	can_register generic map (width => size_16) port map (data_in=>tx_data_1_2_in,data_out=>tx_data_1_2_out,we =>tx_data_1_2_we,clk=> clk,reset=> reset);
+	TXMSGD34	:	can_register generic map (width => size_16) port map (data_in=>tx_data_3_4_in,data_out=>tx_data_3_4_out,we =>tx_data_3_4_we,clk=> clk,reset=> reset);
+	TXMSGD56	:	can_register generic map (width => size_16) port map (data_in=>tx_data_5_6_in,data_out=>tx_data_5_6_out,we =>tx_data_5_6_we,clk=> clk,reset=> reset);
+	TXMSGD78	:	can_register generic map (width => size_16) port map (data_in=>tx_data_7_8_in,data_out=>tx_data_7_8_out,we =>tx_data_7_8_we,clk=> clk,reset=> reset);
 
 	END ;
