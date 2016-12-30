@@ -28,7 +28,7 @@ architecture arch_can_crc of can_crc is
 begin 
     crc_next <= ( data xor crc(14) ) ;
     crc_tmp <= ( crc(13  downto 0 ) & '0' ); --left shift by one position
-    process 
+    process(clk) 
     begin
         if ( clk'EVENT and ( clk = '1' )  ) then
             if ( initialize='1' ) then 
@@ -44,4 +44,5 @@ begin
             end if;
         end if ;
     end process;
+    
 end arch_can_crc; 

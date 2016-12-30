@@ -181,7 +181,7 @@ ARCHITECTURE RTL OF BSP_INTERFACE IS
 	rx_data_7_8_we <= rx_data_7_8_we_sig;
 
 
-		from_bsp<=writedata;
+		from_bsp<= writedata;
 		readdata <= to_bsp;
 
 		PROCESS (clk)
@@ -194,12 +194,12 @@ ARCHITECTURE RTL OF BSP_INTERFACE IS
 					        tx_data_id1_we_sig <= '1' ;
 					        CASE address IS
 					          WHEN  "000001" =>
-					            tx_data_id1_in_sig (15) 			<=	 from_bsp(15) ;
-											tx_data_id1_in_sig (14 DOWNTO 0) 	<=	 rx_data_id1_out(14 DOWNTO 0) ;
-										WHEN  "000010" =>
 					            tx_data_id1_in_sig (14) 			<=	 from_bsp(14) ;
-											tx_data_id1_in_sig (13 DOWNTO 0) 	<=	 rx_data_id1_out(13 DOWNTO 0) ;
-											tx_data_id1_in_sig (15) 			<=	 rx_data_id1_out(15) ;
+											tx_data_id1_in_sig (13 DOWNTO 0) 	<=	 tx_data_id1_out(13 DOWNTO 0) ;
+											tx_data_id1_in_sig (15) 			<=	 tx_data_id1_out(15) ;
+										WHEN  "000010" =>
+										  tx_data_id1_in_sig (15) 			<=	 from_bsp(15) ;
+											tx_data_id1_in_sig (14 DOWNTO 0) 	<=	 tx_data_id1_out(14 DOWNTO 0) ;
 										WHEN OTHERS => NULL ;
 										END CASE ;
 						WHEN "001000" | "001001" | "001010" | "001011"	=>	
