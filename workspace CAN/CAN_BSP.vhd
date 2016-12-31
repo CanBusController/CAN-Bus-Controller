@@ -32,12 +32,19 @@ architecture arch_can_bsp of can_bsp is
     --Data_Length_Code[1..4], Data_Field[1..8bytes], CRC_Sequence[1..15], CRC_Delimiter[1], ACK_Slot[1], ACK_Delimiter[1],
     --End_Of_Frame[1..7], active_error_flag[1..6], passive_error_flag[1..6], error_delimiter[2..8], overload_flag[1..6],
     --overload_delimiter[2..8], intermission[1..3], suspend_transmission[1..8]
-    signal field : can_field_type:=sof;
+
+    --Each bit of a CAN protocol frame can be referenced by its FIELD and POSITION 
+    signal field : can_field_type:=SOF;
+    signal position : std_logic_vector(3 downto 0):=X"1"; --used to count 11 recessive bit in BRO and position in frame
+                                                                  --field
+
     signal recessive_counter : std_logic_vector(3 downto 0):=X"0"; --used to count 11 recessive bits int WFBI
     signal receive_error_counter : std_logic_vector(7 downto 0):=X"00"; --used to count 128 occurences of 11 recessive bits
     signal transmit_error_counter : std_logic_vector(7 downto 0):=X"00";
-    signal position : std_logic_vector(3 downto 0):=X"1"; --used to count 11 recessive bit in BRO
     signal stuff_enable: std_logic:='0'; --used to enable/disable bit stuffing
+    signal active_error_flag_counter : std_logic_vector(3 downto 0):=X"00";
+    signal err_delim_position : std_logic_vector( 3 downto 0):=X"1";
+    signal general_counter : std_logic_vector(3 downto 0):=X"0";
 begin
 
     sync_process:process(clk)
@@ -58,6 +65,7 @@ begin
             ns<=WFBI;
             recessive_counter<=(others=>'0');
             stuff_enable<='0';
+            active_error_flag_counter<=X"00";
         elsif ( clk'event and clk='1') then
             if ( process_bit='1') then
             --stuff assignement
@@ -105,10 +113,10 @@ begin
                     --              The node becomes receiver with setting STATUS to RECEIVING and
                     --              HARD_SYNC_ENABLE to '0'
                     if ( rcv_bit = '0' ) then 
-                        ns<=RCV;
                         hard_sync_en<='0';
                         stuff_enable<='1';
                         field<=id;
+                        ns<=RCV;
                     else
                     --transmitting: If no dominant bit appears on the bus the node waits for a TRANSMISSION_REQUEST to become
                     --              transmitter. Then STATUS is changed to TRANSMITTING. The FIELD of the next bit is
@@ -122,7 +130,51 @@ begin
                              ns<=TRAN;
                         end if ;
                     end if ;
-              --               when RCV =>
+                    when RCV =>
+                        case field is
+                            when ACTIVE_ERROR_FLAG =>
+                                bus_drive<='0';
+                                if ( active_error_flag_counter < X"06" ) then
+                                    if ( bit_err = '1' ) then
+                                        --send another active_error_flag
+                                        active_error_flag_counter<=X"00";
+                                        --increment receive_error_counter by 8 
+                                        receive_error_counter<=
+                                            std_logic_vector(to_unsigned(to_integer(unsigned(receive_error_counter))+8,4));
+                                    else 
+                                        --increment counter by 1 which corresponds to a dominant bit sent
+                                        active_error_flag_counter<=
+                                            std_logic_vector(to_unsigned(to_integer(unsigned(active_error_flag_counter))+1,4));
+                                    end if ;
+                                else 
+                                    bus_drive<='1';
+                                    if ( rcv_bit = '1') then
+                                        err_delim_position<=X"2";
+                                        field<=ERROR_DELIMITER;
+                                    elsif ( rcv_bit = '0') then
+                                        receive_error_counter<=
+                                                std_logic_vector(to_unsigned(to_integer(unsigned(receive_error_counter))+8,4));
+                                        if ( general_counter < X"08" ) then
+                                            general_counter <= 
+                                                std_logic_vector(to_unsigned(to_integer(unsigned(general_counter))+1,4));
+                                        else
+                                        receive_error_counter<=
+                                                std_logic_vector(to_unsigned(to_integer(unsigned(receive_error_counter))+8,4));
+                                        if ( receive_error_counter >= X"80" ) then 
+                                            -- A node is ’error passive’ when the TRANSMIT ERROR COUNT equals or exceeds
+                                            --128, or when the RECEIVE ERROR COUNT equals or exceeds 128.
+                                            field<=PASSIVE_ERROR_FLAG;
+                                        end if ;
+                                    end if ;
+                                end if ;
+                            when PASSIVE_ERROR_FLAG=>
+                            when ERROR_DELIMITER=>
+                            when OVERLOAD_FLAG=>
+                            when OVERLOAD_DELIMITER=>
+                            when INTERMISSION=>
+                            when others => 
+                                --reception of a data frame from the field STart_Of_Frame to End_Of_Frame
+                        end case ;
               --               when TRAN =>
                     when others => 
                         hard_sync_en <= '0';
