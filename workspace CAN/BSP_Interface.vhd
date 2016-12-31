@@ -132,7 +132,7 @@ ARCHITECTURE RTL OF BSP_INTERFACE IS
 	SIGNAL rx_data_5_6_we_sig	:   STD_LOGIC := '0';
 	SIGNAL rx_data_7_8_we_sig	:   STD_LOGIC := '0';
 
-
+  SIGNAL DReady	: STD_LOGIC :='0' ;	
 	BEGIN
 	  
 
@@ -189,6 +189,11 @@ ARCHITECTURE RTL OF BSP_INTERFACE IS
 		IF (clk'event and clk='1') THEN 
 			
 			IF (write = '1') THEN
+			    	if DReady = '0' then
+	             DReady <= '1';
+	          else 
+	             DReady <= '0';
+	          end if;
 					CASE address IS
 					  WHEN "000000"	=>	
 					        tx_data_id1_we_sig <= '1' ;
@@ -299,6 +304,23 @@ ARCHITECTURE RTL OF BSP_INTERFACE IS
 					WHEN OTHERS => NULL ;
 					END CASE ;
 			ELSIF (read = '1') THEN
+			  if DReady='1' then
+				  rx_data_id1_we_sig 	 <= '0';
+				  rx_data_id2_we_sig	  <= '0';
+				  rx_data_conf_we_sig 	<= '0';
+				  rx_data_1_2_we_sig 	<= '0';
+				  rx_data_3_4_we_sig 	<= '0';
+				  rx_data_5_6_we_sig	<= '0';
+				  rx_data_7_8_we_sig 	<= '0';
+				  tx_data_id1_we_sig 	<= '0';
+				  tx_data_id2_we_sig 	<= '0';
+				  tx_data_conf_we_sig <= '0';
+				  tx_data_1_2_we_sig 	<= '0';
+				  tx_data_3_4_we_sig 	<= '0';
+				  tx_data_5_6_we_sig 	<= '0';
+				  tx_data_7_8_we_sig 	<= '0';
+				  DReady<='0' ;
+				end if;
 				CASE address IS
 					WHEN "000000" 	=>	to_bsp 	<=	rx_data_id1_out ;
 					WHEN "001000" 	=>	to_bsp 	<=	tx_data_id1_out ;
@@ -312,7 +334,7 @@ ARCHITECTURE RTL OF BSP_INTERFACE IS
 				END CASE ;
 			END IF;
 				
-		ELSIF (clk'event and clk='0') THEN
+		ELSIF (clk'event and clk='0' and DReady='0') THEN
 				  rx_data_id1_we_sig 	 <= '0';
 				  rx_data_id2_we_sig	  <= '0';
 				  rx_data_conf_we_sig 	<= '0';

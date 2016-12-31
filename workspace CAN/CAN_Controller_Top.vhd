@@ -785,7 +785,7 @@ sw6: SWITCH_CTRL_CPU  PORT map(
 
 sw7: SWITCH_CTRL_CPU  PORT map(
   
-  	 	we_ctrl => tx_data_id1_we_sig_CAN,
+ 	 	we_ctrl => tx_data_id1_we_sig_CAN,
 		we_cpu	=> tx_data_id1_we_sig_CPU,
 
 		cpu_data_in	=> tx_data_id1_in_sig_CPU,
