@@ -144,9 +144,10 @@ ARCHITECTURE RTL OF CPU_INTERFACE IS
 	SIGNAL rx_data_5_6_we_sig	:   STD_LOGIC := '0';
 	SIGNAL rx_data_7_8_we_sig	:   STD_LOGIC := '0';
 
-
+  SIGNAL DReady	: STD_LOGIC :='0' ;	
 	BEGIN
-	  
+
+	    
 	time_reg_in <= time_reg_in_sig;
 	time_reg_we <= time_reg_we_sig ;
 	rx_data_id1_in <= rx_data_id1_in_sig;
@@ -201,20 +202,33 @@ ARCHITECTURE RTL OF CPU_INTERFACE IS
 		BEGIN 
 		IF (clock_avalon'event and clock_avalon='1') THEN 
 			IF (write = '1') THEN
+	         	if DReady = '0' then
+	             DReady <= '1';
+	          else 
+	             DReady <= '0';
+	          end if;
+	          
+	          
 					CASE address IS
-						WHEN "000000"	=>  time_reg_in_sig (3 DOWNTO 0) <= from_cpu_bus (3 DOWNTO 0) ;
-						WHEN "000001"	=>  
+						WHEN "000000"	=>  
+						    time_reg_we_sig 		  <= '1';
+						    time_reg_in_sig<= from_cpu_bus ;
+						WHEN "000001"	=>
+						    time_reg_we_sig 		  <= '1';  
 								time_reg_in_sig (3 DOWNTO 0) 	<= from_cpu_bus(3 DOWNTO 0) ;
 								time_reg_in_sig (15 DOWNTO 4) 	<= time_reg_out(15 DOWNTO 4) ;
 						WHEN "000010"	=>	
+						    time_reg_we_sig 		  <= '1';  
 								time_reg_in_sig (6 DOWNTO 4) 	<= from_cpu_bus(6 DOWNTO 4) ;
 								time_reg_in_sig (15 DOWNTO 7)	<= time_reg_out(15 DOWNTO 7) ;
 								time_reg_in_sig (3 DOWNTO 0) 	<= time_reg_out(3 DOWNTO 0) ;
 						WHEN "000011" 	=>	
+						    time_reg_we_sig 		  <= '1';  
 								time_reg_in_sig (12 DOWNTO 8) 	<= from_cpu_bus(12 DOWNTO 8) ;
 								time_reg_in_sig (15 DOWNTO 13) 	<= time_reg_out(15 DOWNTO 13) ;
 								time_reg_in_sig (7 DOWNTO 0) 	<= time_reg_out( 7 DOWNTO 0) ;
 						WHEN "000100" 	=>	
+						    time_reg_we_sig 		  <= '1';  
 								time_reg_in_sig (15 DOWNTO 13) 	<= from_cpu_bus(15 DOWNTO 13) ;
 								time_reg_in_sig (12 DOWNTO 0) 	<= time_reg_out(12 DOWNTO 0) ;
 						WHEN "001000" | "001001" | "001010" | "001011"	=>	
@@ -314,6 +328,24 @@ ARCHITECTURE RTL OF CPU_INTERFACE IS
 					WHEN OTHERS => NULL ;
 					END CASE ;
 			ELSIF (read = '1') THEN
+			  if DReady='1' then
+			    time_reg_we_sig 		  <= '0';
+				  rx_data_id1_we_sig 	 <= '0';
+				  rx_data_id2_we_sig	  <= '0';
+				  rx_data_conf_we_sig 	<= '0';
+				  rx_data_1_2_we_sig 	<= '0';
+				  rx_data_3_4_we_sig 	<= '0';
+				  rx_data_5_6_we_sig	<= '0';
+				  rx_data_7_8_we_sig 	<= '0';
+				  tx_data_id1_we_sig 	<= '0';
+				  tx_data_id2_we_sig 	<= '0';
+				  tx_data_conf_we_sig <= '0';
+				  tx_data_1_2_we_sig 	<= '0';
+				  tx_data_3_4_we_sig 	<= '0';
+				  tx_data_5_6_we_sig 	<= '0';
+				  tx_data_7_8_we_sig 	<= '0';
+				  DReady<='0' ;
+				end if;
 				CASE address IS
 					WHEN "000000" 	=>	to_cpu_bus 	<=	time_reg_out ;
 					WHEN "001000" 	=>	to_cpu_bus 	<=	rx_data_id1_out ;
@@ -328,7 +360,7 @@ ARCHITECTURE RTL OF CPU_INTERFACE IS
 				END CASE ;
 			END IF;
 				
-		ELSIF (clock_avalon'event and clock_avalon='0') THEN
+		ELSIF (clock_avalon'event and clock_avalon='0' and DReady='0') THEN
 				  time_reg_we_sig 		  <= '0';
 				  rx_data_id1_we_sig 	 <= '0';
 				  rx_data_id2_we_sig	  <= '0';

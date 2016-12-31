@@ -17,6 +17,7 @@ ENTITY can_register IS
 		);
 END ENTITY can_register ;
 
+
 ARCHITECTURE RTL OF can_register IS
 	BEGIN
 		PROCESS(clk,rst)
