@@ -36,17 +36,19 @@ architecture arch_can_bsp of can_bsp is
     --Each bit of a CAN protocol frame can be referenced by its FIELD and POSITION 
     signal field : can_field_type:=SOF;
     signal position : std_logic_vector(3 downto 0):=X"1"; --used to count 11 recessive bit in BRO and position in frame
-                                                                  --field
+                                                          --field
 
     signal recessive_counter : std_logic_vector(3 downto 0):=X"0"; --used to count 11 recessive bits int WFBI
     signal receive_error_counter : std_logic_vector(7 downto 0):=X"00"; --used to count 128 occurences of 11 recessive bits
     signal transmit_error_counter : std_logic_vector(7 downto 0):=X"00";
     signal stuff_enable: std_logic:='0'; --used to enable/disable bit stuffing
-    signal active_error_flag_counter : std_logic_vector(3 downto 0):=X"00";
+    signal active_error_flag_counter : std_logic_vector(3 downto 0):=X"0";
     signal err_delim_position : std_logic_vector( 3 downto 0):=X"1";
     signal general_counter : std_logic_vector(3 downto 0):=X"0";
     signal six_consecutive_dominant : std_logic_vector(3 downto 0):=X"0";
     signal six_consecutive_recessive : std_logic_vector(3 downto 0):=X"0";
+    signal active_error_flag_first_dominant : std_logic:='0';
+    signal intermission_read_sof: std_logic:='0';
 begin
 
     sync_process:process(clk)
@@ -67,7 +69,10 @@ begin
             ns<=WFBI;
             recessive_counter<=(others=>'0');
             stuff_enable<='0';
-            active_error_flag_counter<=X"00";
+            active_error_flag_counter<=X"0";
+            active_error_flag_first_dominant<='0'; 
+            intermission_read_sof<='0';
+	    general_counter<=X"0";
         elsif ( clk'event and clk='1') then
             if ( process_bit='1') then
             --stuff assignement
@@ -112,8 +117,8 @@ begin
                         end if ;
                 when I =>
                     --receiving : wait for dominant bit marking the start of frame
-                    --              The node becomes receiver with setting STATUS to RECEIVING and
-                    --              HARD_SYNC_ENABLE to '0'
+                    --            The node becomes receiver with setting STATUS to RECEIVING and
+                    --            HARD_SYNC_ENABLE to '0'
                     if ( rcv_bit = '0' ) then 
                         hard_sync_en<='0';
                         stuff_enable<='1';
@@ -157,12 +162,13 @@ begin
                                     elsif ( rcv_bit = '0') then
                                         receive_error_counter<=
                                                 std_logic_vector(to_unsigned(to_integer(unsigned(receive_error_counter))+8,4));
-                                        if ( general_counter < X"08" ) then
+                                        if ( general_counter < X"8" ) then
                                             general_counter <= 
                                                 std_logic_vector(to_unsigned(to_integer(unsigned(general_counter))+1,4));
                                         else
                                         receive_error_counter<=
                                                 std_logic_vector(to_unsigned(to_integer(unsigned(receive_error_counter))+8,4));
+					end if ;
                                         if ( receive_error_counter >= X"80" ) then 
                                             -- A node is 'error passive' when the RECEIVE ERROR COUNT equals or exceeds 128.
                                             general_counter<=X"0";
@@ -188,8 +194,11 @@ begin
                                     end if ;
                                 elsif ( six_consecutive_dominant=X"6" or six_consecutive_recessive=X"6" ) then
                                     if ( rcv_bit  = '0' ) then 
-                                        receive_error_counter<=
-                                               std_logic_vector(to_unsigned(to_integer(unsigned(receive_error_counter))+8,4));
+                                        if ( active_error_flag_first_dominant='0' ) then
+                                            receive_error_counter<=
+                                                   std_logic_vector(to_unsigned(to_integer(unsigned(receive_error_counter))+8,4));
+                                            active_error_flag_first_dominant<='1';
+                                        end if ;
                                         if ( general_counter < X"7" ) then
                                             general_counter<=
                                                std_logic_vector(to_unsigned(to_integer(unsigned(general_counter))+1,4));
@@ -199,6 +208,11 @@ begin
                                         receive_error_counter<=
                                                std_logic_vector(to_unsigned(to_integer(unsigned(receive_error_counter))+8,4));
                                         general_counter<=X"0";
+                                            if ( receive_error_counter >= X"80" ) then 
+                                                -- A node is 'error passive' when the RECEIVE ERROR COUNT equals or exceeds 128.
+                                                general_counter<=X"0";
+                                                field<=PASSIVE_ERROR_FLAG;
+                                            end if ;
                                         end if ;
                                    elsif ( rcv_bit ='1' ) then
                                        err_delim_position<=X"2";
@@ -207,9 +221,94 @@ begin
                                    end if ;
                                end if ;
                            when ERROR_DELIMITER=>
+                               --send 8 recessive bits and change to intermission
+                               bus_drive<='1';
+                               if ( general_counter < X"8" ) then
+                                   general_counter <= 
+                                         std_logic_vector(to_unsigned(to_integer(unsigned(general_counter))+1,4));
+                               elsif ( general_counter = X"8" ) then
+                                    bus_drive<='0';
+                                    general_counter<=X"0";
+                                    field<=INTERMISSION;
+                               end if ;
+
                            when OVERLOAD_FLAG=>
+                                bus_drive<='0';
+                                if ( active_error_flag_counter < X"06" ) then
+                                    if ( bit_err = '1' ) then
+                                        --send another active_error_flag
+                                        active_error_flag_counter<=X"00";
+                                        --increment receive_error_counter by 8 
+                                        receive_error_counter<=
+                                            std_logic_vector(to_unsigned(to_integer(unsigned(receive_error_counter))+8,4));
+                                    else 
+                                        --increment counter by 1 which corresponds to a dominant bit sent
+                                        active_error_flag_counter<=
+                                            std_logic_vector(to_unsigned(to_integer(unsigned(active_error_flag_counter))+1,4));
+                                    end if ;
+                                else 
+                                    bus_drive<='1';
+                                    if ( rcv_bit = '1') then
+                                        err_delim_position<=X"2";
+                                        general_counter<=X"0";
+                                        field<=ERROR_DELIMITER;
+                                    elsif ( rcv_bit = '0') then
+                                        if ( general_counter < X"8" ) then
+                                            general_counter <= 
+                                                std_logic_vector(to_unsigned(to_integer(unsigned(general_counter))+1,4));
+                                        else
+                                        receive_error_counter<=
+                                                std_logic_vector(to_unsigned(to_integer(unsigned(receive_error_counter))+8,4));
+					end if ;
+                                        if ( receive_error_counter >= X"80" ) then 
+                                            -- A node is 'error passive' when the RECEIVE ERROR COUNT equals or exceeds 128.
+                                            general_counter<=X"0";
+                                            field<=PASSIVE_ERROR_FLAG;
+                                        end if ;
+                                    end if ;
+                                end if ;
+
                            when OVERLOAD_DELIMITER=>
+                               --send 8 recessive bits and change to intermission
+                               bus_drive<='1';
+                               if ( general_counter < X"8" ) then
+                                   general_counter <= 
+                                         std_logic_vector(to_unsigned(to_integer(unsigned(general_counter))+1,4));
+                               elsif ( general_counter = X"8" ) then
+                                    bus_drive<='0';
+                                    general_counter<=X"0";
+                                    field<=INTERMISSION;
+                               end if ;
                            when INTERMISSION=>
+                                if ( general_counter < X"3" ) then
+                                   general_counter <= 
+                                         std_logic_vector(to_unsigned(to_integer(unsigned(general_counter))+1,4));
+                                    if ( (general_counter = X"0" or general_counter = X"1")and rcv_bit='0') then
+                                        general_counter<=X"0";
+                                        field<=OVERLOAD_FLAG;
+                                    elsif ( general_counter=X"2" and rcv_bit='0') then
+                                        intermission_read_sof<='1';
+                                    end if ;
+                                elsif ( general_counter = X"3" ) then
+                                    --have read 11X, if X = 0 then it will be considered as start of frame
+                                    --               if X = 1 then if  transmission_request = 1 next state <= Transmitting
+                                    --                             else next state <= Idle
+                                    general_counter<=X"0";
+                                    if ( intermission_read_sof = '1' ) then
+                                        field<=ID;
+                                        if ( tr_rqst = '1' ) then
+                                            ns <= TRAN ;
+                                        else 
+                                            ns <= RCV;
+                                        end if ;
+                                    elsif ( intermission_read_sof = '0' ) then
+                                        if ( tr_rqst = '1' ) then
+                                            ns <= TRAN;
+                                        else 
+                                            ns <= I ;
+                                        end if ;
+                                    end if;
+                                end if ;
                            when others => 
                    --reception of a data frame from the field STart_Of_Frame to End_Of_Frame
                        end case ;
