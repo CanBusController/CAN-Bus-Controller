@@ -45,6 +45,8 @@ architecture arch_can_bsp of can_bsp is
     signal active_error_flag_counter : std_logic_vector(3 downto 0):=X"00";
     signal err_delim_position : std_logic_vector( 3 downto 0):=X"1";
     signal general_counter : std_logic_vector(3 downto 0):=X"0";
+    signal six_consecutive_dominant : std_logic_vector(3 downto 0):=X"0";
+    signal six_consecutive_recessive : std_logic_vector(3 downto 0):=X"0";
 begin
 
     sync_process:process(clk)
@@ -150,6 +152,7 @@ begin
                                     bus_drive<='1';
                                     if ( rcv_bit = '1') then
                                         err_delim_position<=X"2";
+                                        general_counter<=X"0";
                                         field<=ERROR_DELIMITER;
                                     elsif ( rcv_bit = '0') then
                                         receive_error_counter<=
@@ -161,28 +164,63 @@ begin
                                         receive_error_counter<=
                                                 std_logic_vector(to_unsigned(to_integer(unsigned(receive_error_counter))+8,4));
                                         if ( receive_error_counter >= X"80" ) then 
-                                            -- A node is ’error passive’ when the TRANSMIT ERROR COUNT equals or exceeds
-                                            --128, or when the RECEIVE ERROR COUNT equals or exceeds 128.
+                                            -- A node is 'error passive' when the RECEIVE ERROR COUNT equals or exceeds 128.
+                                            general_counter<=X"0";
                                             field<=PASSIVE_ERROR_FLAG;
                                         end if ;
                                     end if ;
                                 end if ;
                             when PASSIVE_ERROR_FLAG=>
-                            when ERROR_DELIMITER=>
-                            when OVERLOAD_FLAG=>
-                            when OVERLOAD_DELIMITER=>
-                            when INTERMISSION=>
-                            when others => 
-                                --reception of a data frame from the field STart_Of_Frame to End_Of_Frame
-                        end case ;
-              --               when TRAN =>
-                    when others => 
-                        hard_sync_en <= '0';
-                end case ;
-            --    elsif adjust_error_counters'event and adjust_error_counters='1' then
-            --adjustement assignements
-            end if;
-        end if;
-    end process;
+                            --wait for six consecutive bits of same polarity
+                                if ( six_consecutive_dominant/=X"6" and six_consecutive_recessive/=X"6") then
+                                    if ( rcv_bit = '1' ) then
+                                        six_consecutive_dominant<=X"0";
+                                        if ( six_consecutive_recessive <X"6" ) then
+                                            six_consecutive_recessive  <= 
+                                               std_logic_vector(to_unsigned(to_integer(unsigned(six_consecutive_recessive ))+1,4));
+                                        end if;
+                                    elsif (rcv_bit ='0' ) then
+                                        six_consecutive_recessive<=X"0";
+                                        if ( six_consecutive_dominant <X"6" ) then
+                                            six_consecutive_dominant  <= 
+                                               std_logic_vector(to_unsigned(to_integer(unsigned(six_consecutive_dominant ))+1,4));
+                                        end if;
+                                    end if ;
+                                elsif ( six_consecutive_dominant=X"6" or six_consecutive_recessive=X"6" ) then
+                                    if ( rcv_bit  = '0' ) then 
+                                        receive_error_counter<=
+                                               std_logic_vector(to_unsigned(to_integer(unsigned(receive_error_counter))+8,4));
+                                        if ( general_counter < X"7" ) then
+                                            general_counter<=
+                                               std_logic_vector(to_unsigned(to_integer(unsigned(general_counter))+1,4));
+                                        elsif ( general_counter =X"7" ) then
+                                            --after each sequence of additional
+                                            --eight consecutive dominant bits the RECEIVE_ERROR_COUNTER is incremented by 8
+                                        receive_error_counter<=
+                                               std_logic_vector(to_unsigned(to_integer(unsigned(receive_error_counter))+8,4));
+                                        general_counter<=X"0";
+                                        end if ;
+                                   elsif ( rcv_bit ='1' ) then
+                                       err_delim_position<=X"2";
+                                       general_counter<=X"0";
+                                       field<=ERROR_DELIMITER;
+                                   end if ;
+                               end if ;
+                           when ERROR_DELIMITER=>
+                           when OVERLOAD_FLAG=>
+                           when OVERLOAD_DELIMITER=>
+                           when INTERMISSION=>
+                           when others => 
+                   --reception of a data frame from the field STart_Of_Frame to End_Of_Frame
+                       end case ;
+               --               when TRAN =>
+                   when others => 
+                       hard_sync_en <= '0';
+               end case ;
+       --    elsif adjust_error_counters'event and adjust_error_counters='1' then
+       --adjustement assignements
+           end if;
+       end if;
+   end process;
 
 end arch_can_bsp;
