@@ -16,21 +16,20 @@ entity can_crc is
              data       :  in std_logic;
              enable     :  in std_logic;
              initialize :  in std_logic;
-             crc        :  buffer std_logic_vector( 14  downto 0  ) 
-
+             crc        :  buffer std_logic_vector(14 downto 0) 
          );
 end entity; 
 
 
 architecture arch_can_crc of can_crc is 
     signal crc_next: std_logic;
-    signal crc_tmp : std_logic_vector( 14  downto 0  );
+    signal crc_tmp : std_logic_vector(14 downto 0);
 begin 
     crc_next <= ( data xor crc(14) ) ;
     crc_tmp <= ( crc(13  downto 0 ) & '0' ); --left shift by one position
     process(clk) 
     begin
-        if ( clk'EVENT and ( clk = '1' )  ) then
+        if ( clk'EVENT and clk = '1' ) then
             if ( initialize='1' ) then 
                 crc <= std_logic_vector(to_unsigned(0, 15))  ;
             else 
