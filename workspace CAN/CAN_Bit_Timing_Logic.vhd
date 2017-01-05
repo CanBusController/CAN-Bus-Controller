@@ -21,7 +21,8 @@ ENTITY can_bit_timing_logic IS
       rx_idle                 : OUT std_logic;
       sample_point            : OUT std_logic;     
       busmon                  : OUT std_logic;   
-      hard_sync_enable        : in std_logic; 
+      hard_sync_enable        : in std_logic;
+      bit_err                 : out std_logic; 
       bus_drive               : in std_logic);
         
  
@@ -36,8 +37,6 @@ function conv_std_logic(b : boolean) return std_ulogic is
 begin
   if b then return('1'); else return('0'); end if;
 end; 
-
-
 
     SIGNAL TRANSMITTER            :  std_logic;
     SIGNAL RECEIVER               :  std_logic;
@@ -72,21 +71,22 @@ BEGIN
 sync_jump_width <= time_reg(15 downto 14); 
 time_segment1 <= ('0' & time_reg(2 downto 0)) + ('0' & time_reg(6 downto 4)) ;
 time_segment_temp <= time_reg(13 downto 8) - ('0' & ('0' & (time_segment1 + 1)));
-
+PB_SEGMENT2 <= time_segment_temp(2 downto 0);
 IDLE <= rx_idle_temp or conv_std_logic(RECEIVER='0' and TRANSMITTER ='0');
 RECEIVER <= '1' when IDLE ='0' and TRANSMITTER = '0' else '0';
 TRANSMITTER <= '1' when IDLE = '0' and rx_CAN_i = TxCan_i else '0'; 
     
+bit_err <= not conv_std_logic( TxCan_i = rx_CAN_i ) when seg2='1';  
 
 BIT_TIMING: process(RESET,time_reg,TQ_clk , rx_CAN_i )
 
-variable DIFF:INTEGER;
 begin
       if RESET='1' then
-        TxCan <= '1';
+        bit_err<= '0';
         sample_point_i <= '0'; 
-        counter <= "00000";       
-        Qcounter <= "00000";
+        counter <= "00010";       
+        Qcounter <= "00001";
+        sync<='0';
         seg1<='1';
         seg2<='0';
         TRANSMIT_POINT <= '0';
@@ -99,7 +99,6 @@ begin
       if (time_reg'event) or (RESET'event and RESET='0')then
             SAMPLE <= time_segment1 + '1';
             NTQ <= time_reg (13 downto 8);
-            PB_SEGMENT2 <= time_segment_temp(2 downto 0);
             TRANSMIT_POINT <= '0';
       end if;
       
@@ -107,7 +106,7 @@ begin
               
               if (counter = NTQ) then 
                 counter <= "00001";
-              else 
+              elsif (TRANSMIT_POINT = '0' and SAMPLE_POINT_i = '0') then
                 counter <= counter + "00001";
               end if;
             
@@ -116,17 +115,17 @@ begin
                   sync <='0';
                   seg1<='1';
                   seg2<='0';
-              elsif (Qcounter = time_segment1 and seg1='1') then
+              elsif (Qcounter = SAMPLE and seg1='1' and SAMPLE_POINT_i = '1') then
                   Qcounter <= "00001";
                   sync <='0';
                   seg1<='0';
                   seg2<='1';
-              elsif (Qcounter = PB_SEGMENT2 and seg2='1') then
+              elsif (Qcounter = PB_SEGMENT2+'1' and seg2='1' and TRANSMIT_POINT = '1') then
                   Qcounter <= "00001";
                   sync <='1';
                   seg1<='0';
                   seg2<='0';  
-              else 
+              elsif (TRANSMIT_POINT = '0' and SAMPLE_POINT_i = '0') then
                   Qcounter <= Qcounter + "00001";
               end if;
               
@@ -155,7 +154,6 @@ begin
               if  rx_CAN_i = '0'  and  busmon_i = '1'  and SYNC_ENABLE = '1' then
                    SYNC_ENABLE <= '0';
                    if  HARD_SYNC_ENABLE = '1'  then
-
                     --Transmitter: Synchronize only if edge after sample point
                             if BUS_DRIVE = '1' or counter > SAMPLE then
                                 counter <= "00001";

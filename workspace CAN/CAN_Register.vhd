@@ -10,9 +10,10 @@ ENTITY can_register IS
     );
     PORT
     (
-        data_in 	: IN STD_LOGIC_VECTOR( width - 1 DOWNTO 0);
-        data_out        : OUT STD_LOGIC_VECTOR(width  - 1 DOWNTO 0);
-        we 		: IN STD_LOGIC ;
+        data_in 	  : IN STD_LOGIC_VECTOR( width - 1 DOWNTO 0);
+        data_out   : OUT STD_LOGIC_VECTOR(width  - 1 DOWNTO 0);
+        we 		      : IN STD_LOGIC ;
+        we_async 		: IN STD_LOGIC ;
         clk		: IN STD_LOGIC ;
         rst 		: IN STD_LOGIC
     );
@@ -21,10 +22,12 @@ END ENTITY can_register ;
 
 ARCHITECTURE RTL OF can_register IS
 BEGIN
-    PROCESS(clk,rst)
+    PROCESS(clk,rst,we_async)
     BEGIN
         IF(rst='1') THEN
             data_out<=(OTHERS=>'0');
+        ELSIF(we_async'EVENT AND we_async='1') THEN
+            data_out<= data_in ;
         ELSIF (clk'EVENT AND clk='1') THEN 
             IF (we='1') THEN
                 data_out<= data_in ;

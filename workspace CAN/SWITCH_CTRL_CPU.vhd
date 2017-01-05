@@ -18,7 +18,7 @@ END ENTITY ;
 ARCHITECTURE  SWITCH_CTRL_CPU_ARCH OF SWITCH_CTRL_CPU IS 
 	BEGIN 
 
-	we_OUT <=	we_ctrl WHEN we_ctrl = '1' ELSE
+	we_OUT <=	'0' WHEN we_ctrl = '1' ELSE
 				    we_cpu	WHEN we_cpu  = '1' ELSE
 				    '0' ;
 
