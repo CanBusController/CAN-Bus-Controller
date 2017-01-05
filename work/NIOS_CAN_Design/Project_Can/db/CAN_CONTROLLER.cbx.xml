@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<LOG_ROOT>
-	<PROJECT NAME="CAN_CONTROLLER">
-		<CBX_INST_ENTRY INSTANCE_NAME="|CAN_CONTROLLER|CAN_CONTROLLER_nios2_qsys_0:nios2_qsys_0|CAN_CONTROLLER_nios2_qsys_0_nios2_oci:the_CAN_CONTROLLER_nios2_qsys_0_nios2_oci|CAN_CONTROLLER_nios2_qsys_0_nios2_ocimem:the_CAN_CONTROLLER_nios2_qsys_0_nios2_ocimem|CAN_CONTROLLER_nios2_qsys_0_ociram_sp_ram_module:CAN_CONTROLLER_nios2_qsys_0_ociram_sp_ram|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_42a1.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|CAN_CONTROLLER|CAN_CONTROLLER_nios2_qsys_0:nios2_qsys_0|CAN_CONTROLLER_nios2_qsys_0_register_bank_a_module:CAN_CONTROLLER_nios2_qsys_0_register_bank_a|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_hrh1.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|CAN_CONTROLLER|CAN_CONTROLLER_nios2_qsys_0:nios2_qsys_0|CAN_CONTROLLER_nios2_qsys_0_register_bank_b_module:CAN_CONTROLLER_nios2_qsys_0_register_bank_b|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_irh1.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|CAN_CONTROLLER|CAN_CONTROLLER_onchip_memory2_0:onchip_memory2_0|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_ftd1.tdf"/>
-	</PROJECT>
-</LOG_ROOT>
