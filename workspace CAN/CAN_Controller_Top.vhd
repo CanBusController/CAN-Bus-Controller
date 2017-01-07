@@ -426,6 +426,26 @@ end component;
 		rx_data_3_4_we	:	IN STD_LOGIC;
 		rx_data_5_6_we	:	IN STD_LOGIC;
 		rx_data_7_8_we	:	IN STD_LOGIC;
+		
+		tx_data_id1_we_async:	IN STD_LOGIC;
+		tx_data_id2_we_async:	IN STD_LOGIC;
+
+		tx_data_conf_we_async:	IN STD_LOGIC;
+
+		tx_data_1_2_we_async:	IN STD_LOGIC;
+		tx_data_3_4_we_async:	IN STD_LOGIC;
+		tx_data_5_6_we_async:	IN STD_LOGIC;
+		tx_data_7_8_we_async:	IN STD_LOGIC;
+
+		rx_data_id1_we_async:	IN STD_LOGIC;
+		rx_data_id2_we_async:	IN STD_LOGIC;
+
+		rx_data_conf_we_async:	IN STD_LOGIC;
+
+		rx_data_1_2_we_async:	IN STD_LOGIC;
+		rx_data_3_4_we_async:	IN STD_LOGIC;
+		rx_data_5_6_we_async:	IN STD_LOGIC;
+		rx_data_7_8_we_async:	IN STD_LOGIC;
 
 		clk 			:	IN STD_LOGIC;
 		reset 			: 	IN STD_LOGIC
@@ -495,12 +515,31 @@ CAN_Msg :  CAN_MESSAGE PORT MAP (
 		rx_data_3_4_we	 => rx_data_3_4_we_sig,
 		rx_data_5_6_we	 => rx_data_5_6_we_sig,
 		rx_data_7_8_we	 => rx_data_7_8_we_sig,
+		
+		tx_data_id1_we_async	 => tx_data_id1_we_sig_CAN,
+		tx_data_id2_we_async	 => tx_data_id2_we_sig_CAN,
 
+		tx_data_conf_we_async	 => tx_data_conf_we_sig_CAN,
+
+		tx_data_1_2_we_async	 => tx_data_1_2_we_sig_CAN,
+		tx_data_3_4_we_async	 => tx_data_3_4_we_sig_CAN,
+		tx_data_5_6_we_async	 => tx_data_5_6_we_sig_CAN,
+		tx_data_7_8_we_async	 => tx_data_7_8_we_sig_CAN,
+
+		rx_data_id1_we_async	 => rx_data_id1_we_sig_CAN,
+		rx_data_id2_we_async	 => rx_data_id2_we_sig_CAN,
+
+		rx_data_conf_we_async	 => rx_data_conf_we_sig_CAN,
+
+		rx_data_1_2_we_async	 => rx_data_1_2_we_sig_CAN,
+		rx_data_3_4_we_async	 => rx_data_3_4_we_sig_CAN,
+		rx_data_5_6_we_async	 => rx_data_5_6_we_sig_CAN,
+		rx_data_7_8_we_async	 => rx_data_7_8_we_sig_CAN,
+		
 		clk 			 => clk,
-		reset 			 => rst
+		reset 	 => rst
 		);
   
-    
     
 Can_int :  Can_interface PORT MAP (
       RxCan           	 => RxCan,
@@ -532,7 +571,7 @@ Can_int :  Can_interface PORT MAP (
 		--output from reg  to read --
     
   		rx_data_id1_in	=> rx_data_id1_in_sig_CAN,
-		rx_data_id2_in	=> rx_data_id2_in_sig_CAN,
+		--rx_data_id2_in	=> rx_data_id2_in_sig_CAN,
 
 		rx_data_conf_in	=> rx_data_conf_in_sig_CAN,	
 
@@ -590,7 +629,7 @@ CPU_INT : CPU_INTERFACE PORT MAP (
 		readdata => readdata,
 
      
-      --input from reg  to read --
+      --input from reg to read --
       
   		rx_data_id1_out => rx_data_id1_out_sig,
 		rx_data_id2_out => rx_data_id2_out_sig,
@@ -612,7 +651,7 @@ CPU_INT : CPU_INTERFACE PORT MAP (
 		tx_data_5_6_out => tx_data_5_6_out_sig,
 		tx_data_7_8_out => tx_data_7_8_out_sig,	
 		
-		--output from reg  to read --
+		--output to reg to write --
     
   		rx_data_id1_in	=> rx_data_id1_in_sig_CPU,
 		rx_data_id2_in	=> rx_data_id2_in_sig_CPU,
@@ -699,7 +738,7 @@ sw0: SWITCH_CTRL_CPU  PORT map(
 
 sw1: SWITCH_CTRL_CPU  PORT map(
   
-  	 	we_ctrl => rx_data_id2_we_sig_CAN,
+ 	 	we_ctrl => rx_data_id2_we_sig_CAN,
 		we_cpu	=> rx_data_id2_we_sig_CPU,
 
 		cpu_data_in	=> rx_data_id2_in_sig_CPU,
@@ -827,7 +866,7 @@ sw9: SWITCH_CTRL_CPU  PORT map(
 
 sw10: SWITCH_CTRL_CPU  PORT map(
   
-  	 	we_ctrl => tx_data_1_2_we_sig_CAN,
+ 	 	we_ctrl => tx_data_1_2_we_sig_CAN,
 		we_cpu	=> tx_data_1_2_we_sig_CPU,
 
 		cpu_data_in	=> tx_data_1_2_in_sig_CPU,
