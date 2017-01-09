@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <systemtable>
+  <columns>
+   <connections preferredWidth="271" />
+   <irq preferredWidth="47" />
+  </columns>
+ </systemtable>
+ <clocktable>
+  <columns>
+   <clockname preferredWidth="183" />
+   <clocksource preferredWidth="183" />
+   <frequency preferredWidth="163" />
+  </columns>
+ </clocktable>
+ <window width="1382" height="744" x="-8" y="-8" />
+ <library
+   expandedCategories="Library/Memories and Memory Controllers,Library/Clock and Reset,Library/Verification/Simulation,Library/Interface Protocols/SDI,Library/Interface Protocols,Project,Library/Interface Protocols/Ethernet/Submodules,Library/Memories and Memory Controllers/On-Chip,Library/Bridges/Memory-Mapped,Library/Bridges,Library/Qsys Interconnect,Library/Verification,Library/Qsys Interconnect/Interrupt,Library/DSP/Video and Image Processing,Library,Library/DSP,Library/Interface Protocols/Ethernet" />
+ <generation synthesis="VHDL" simulation="VHDL" path="_PROJECT_NAME_" />
+</preferences>

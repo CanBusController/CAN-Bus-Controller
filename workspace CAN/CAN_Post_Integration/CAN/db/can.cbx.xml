@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="can">
+		<CBX_INST_ENTRY INSTANCE_NAME="|can|can_nios2_qsys_0:nios2_qsys_0|can_nios2_qsys_0_nios2_oci:the_can_nios2_qsys_0_nios2_oci|can_nios2_qsys_0_nios2_ocimem:the_can_nios2_qsys_0_nios2_ocimem|can_nios2_qsys_0_ociram_sp_ram_module:can_nios2_qsys_0_ociram_sp_ram|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_un81.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|can|can_nios2_qsys_0:nios2_qsys_0|can_nios2_qsys_0_register_bank_a_module:can_nios2_qsys_0_register_bank_a|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_bhg1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|can|can_nios2_qsys_0:nios2_qsys_0|can_nios2_qsys_0_register_bank_b_module:can_nios2_qsys_0_register_bank_b|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_chg1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|can|can_onchip_memory2_0:onchip_memory2_0|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_9jc1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

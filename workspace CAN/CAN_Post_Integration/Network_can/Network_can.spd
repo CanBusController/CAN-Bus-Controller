@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="Network_can/simulation/submodules/mentor/altera_merlin_width_adapter.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="width_adapter"
+   simulator="modelsim" />
+ <file
+   path="Network_can/simulation/submodules/mentor/altera_merlin_address_alignment.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="width_adapter"
+   simulator="modelsim" />
+ <file
+   path="Network_can/simulation/submodules/mentor/altera_merlin_burst_uncompressor.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="width_adapter"
+   simulator="modelsim" />
+ <file
+   path="Network_can/simulation/submodules/aldec/altera_merlin_width_adapter.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="width_adapter"
+   simulator="riviera" />
+ <file
+   path="Network_can/simulation/submodules/aldec/altera_merlin_address_alignment.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="width_adapter"
+   simulator="riviera" />
+ <file
+   path="Network_can/simulation/submodules/aldec/altera_merlin_burst_uncompressor.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="width_adapter"
+   simulator="riviera" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_rsp_xbar_mux_001.vho"
+   type="VHDL"
+   library="rsp_xbar_mux_001" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_rsp_xbar_mux.vho"
+   type="VHDL"
+   library="rsp_xbar_mux" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_rsp_xbar_demux_002.vho"
+   type="VHDL"
+   library="rsp_xbar_demux_002" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_cmd_xbar_mux_002.vho"
+   type="VHDL"
+   library="cmd_xbar_mux_002" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_cmd_xbar_mux.vho"
+   type="VHDL"
+   library="cmd_xbar_mux" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_cmd_xbar_demux_001.vho"
+   type="VHDL"
+   library="cmd_xbar_demux_001" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_cmd_xbar_demux.vho"
+   type="VHDL"
+   library="cmd_xbar_demux" />
+ <file
+   path="Network_can/simulation/submodules/mentor/altera_merlin_burst_adapter.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="burst_adapter"
+   simulator="modelsim" />
+ <file
+   path="Network_can/simulation/submodules/mentor/altera_merlin_address_alignment.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="burst_adapter"
+   simulator="modelsim" />
+ <file
+   path="Network_can/simulation/submodules/aldec/altera_merlin_burst_adapter.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="burst_adapter"
+   simulator="riviera" />
+ <file
+   path="Network_can/simulation/submodules/aldec/altera_merlin_address_alignment.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="burst_adapter"
+   simulator="riviera" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_id_router_002.vho"
+   type="VHDL"
+   library="id_router_002" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_id_router_001.vho"
+   type="VHDL"
+   library="id_router_001" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_id_router.vho"
+   type="VHDL"
+   library="id_router" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_addr_router_001.vho"
+   type="VHDL"
+   library="addr_router_001" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_addr_router.vho"
+   type="VHDL"
+   library="addr_router" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_onchip_memory2_0_s1_translator_avalon_universal_slave_0_agent_rsp_fifo.vho"
+   type="VHDL"
+   library="onchip_memory2_0_s1_translator_avalon_universal_slave_0_agent_rsp_fifo" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0_nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent_rsp_fifo.vho"
+   type="VHDL"
+   library="nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent_rsp_fifo" />
+ <file
+   path="Network_can/simulation/submodules/mentor/altera_merlin_slave_agent.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent"
+   simulator="modelsim" />
+ <file
+   path="Network_can/simulation/submodules/mentor/altera_merlin_burst_uncompressor.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent"
+   simulator="modelsim" />
+ <file
+   path="Network_can/simulation/submodules/aldec/altera_merlin_slave_agent.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent"
+   simulator="riviera" />
+ <file
+   path="Network_can/simulation/submodules/aldec/altera_merlin_burst_uncompressor.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent"
+   simulator="riviera" />
+ <file
+   path="Network_can/simulation/submodules/mentor/altera_merlin_master_agent.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_instruction_master_translator_avalon_universal_master_0_agent"
+   simulator="modelsim" />
+ <file
+   path="Network_can/simulation/submodules/aldec/altera_merlin_master_agent.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_instruction_master_translator_avalon_universal_master_0_agent"
+   simulator="riviera" />
+ <file
+   path="Network_can/simulation/submodules/mentor/altera_merlin_slave_translator.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_jtag_debug_module_translator"
+   simulator="modelsim" />
+ <file
+   path="Network_can/simulation/submodules/aldec/altera_merlin_slave_translator.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_jtag_debug_module_translator"
+   simulator="riviera" />
+ <file
+   path="Network_can/simulation/submodules/mentor/altera_merlin_master_translator.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_instruction_master_translator"
+   simulator="modelsim" />
+ <file
+   path="Network_can/simulation/submodules/aldec/altera_merlin_master_translator.sv"
+   type="SYSTEM_VERILOG_ENCRYPT"
+   library="nios2_qsys_0_instruction_master_translator"
+   simulator="riviera" />
+ <file
+   path="Network_can/simulation/submodules/mentor/altera_reset_controller.v"
+   type="VERILOG_ENCRYPT"
+   library="rst_controller"
+   simulator="modelsim" />
+ <file
+   path="Network_can/simulation/submodules/mentor/altera_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="rst_controller"
+   simulator="modelsim" />
+ <file
+   path="Network_can/simulation/submodules/aldec/altera_reset_controller.v"
+   type="VERILOG_ENCRYPT"
+   library="rst_controller"
+   simulator="riviera" />
+ <file
+   path="Network_can/simulation/submodules/aldec/altera_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="rst_controller"
+   simulator="riviera" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_irq_mapper.vho"
+   type="VHDL"
+   library="irq_mapper" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_1.vhd"
+   type="VHDL"
+   library="mm_interconnect_1" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_1_nios2_qsys_1_jtag_debug_module_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_1" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_1_onchip_memory2_1_s1_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_1" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_1_can_controller_1_avalon_slave_0_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_1" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_1_nios2_qsys_1_jtag_debug_module_translator_avalon_universal_slave_0_agent.vhd"
+   type="VHDL"
+   library="mm_interconnect_1" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_1_onchip_memory2_1_s1_translator_avalon_universal_slave_0_agent.vhd"
+   type="VHDL"
+   library="mm_interconnect_1" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_1_width_adapter.vhd"
+   type="VHDL"
+   library="mm_interconnect_1" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_1_width_adapter_002.vhd"
+   type="VHDL"
+   library="mm_interconnect_1" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_1_nios2_qsys_1_instruction_master_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_1" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_1_nios2_qsys_1_data_master_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_mm_interconnect_0.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_0_nios2_qsys_0_jtag_debug_module_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_0_onchip_memory2_0_s1_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_0_can_controller_0_avalon_slave_0_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_0_nios2_qsys_0_jtag_debug_module_translator_avalon_universal_slave_0_agent.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_0_onchip_memory2_0_s1_translator_avalon_universal_slave_0_agent.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_0_width_adapter.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_0_width_adapter_002.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_0_nios2_qsys_0_instruction_master_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="Network_can/simulation/submodules/network_can_mm_interconnect_0_nios2_qsys_0_data_master_translator.vhd"
+   type="VHDL"
+   library="mm_interconnect_0" />
+ <file
+   path="Network_can/simulation/submodules/CAN_Bus.vhd"
+   type="VHDL"
+   library="Bus_CAN_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_onchip_memory2_1.hex"
+   type="HEX"
+   library="onchip_memory2_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_onchip_memory2_1.vhd"
+   type="VHDL"
+   library="onchip_memory2_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_onchip_memory2_0.hex"
+   type="HEX"
+   library="onchip_memory2_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_onchip_memory2_0.vhd"
+   type="VHDL"
+   library="onchip_memory2_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1.sdc"
+   type="SDC"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1.vhd"
+   type="VHDL"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_jtag_debug_module_sysclk.vhd"
+   type="VHDL"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_jtag_debug_module_tck.vhd"
+   type="VHDL"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_jtag_debug_module_wrapper.vhd"
+   type="VHDL"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_nios2_waves.do"
+   type="OTHER"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_ociram_default_contents.dat"
+   type="DAT"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_ociram_default_contents.hex"
+   type="HEX"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_ociram_default_contents.mif"
+   type="MIF"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_oci_test_bench.vhd"
+   type="VHDL"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_rf_ram_a.dat"
+   type="DAT"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_rf_ram_a.hex"
+   type="HEX"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_rf_ram_a.mif"
+   type="MIF"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_rf_ram_b.dat"
+   type="DAT"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_rf_ram_b.hex"
+   type="HEX"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_rf_ram_b.mif"
+   type="MIF"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_1_test_bench.vhd"
+   type="VHDL"
+   library="nios2_qsys_1" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0.sdc"
+   type="SDC"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0.vhd"
+   type="VHDL"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_jtag_debug_module_sysclk.vhd"
+   type="VHDL"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_jtag_debug_module_tck.vhd"
+   type="VHDL"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_jtag_debug_module_wrapper.vhd"
+   type="VHDL"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_nios2_waves.do"
+   type="OTHER"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_ociram_default_contents.dat"
+   type="DAT"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_ociram_default_contents.hex"
+   type="HEX"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_ociram_default_contents.mif"
+   type="MIF"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_oci_test_bench.vhd"
+   type="VHDL"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_rf_ram_a.dat"
+   type="DAT"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_rf_ram_a.hex"
+   type="HEX"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_rf_ram_a.mif"
+   type="MIF"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_rf_ram_b.dat"
+   type="DAT"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_rf_ram_b.hex"
+   type="HEX"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_rf_ram_b.mif"
+   type="MIF"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/Network_can_nios2_qsys_0_test_bench.vhd"
+   type="VHDL"
+   library="nios2_qsys_0" />
+ <file
+   path="Network_can/simulation/submodules/BSP_Interface.vhd"
+   type="VHDL"
+   library="Can_controller_0" />
+ <file
+   path="Network_can/simulation/submodules/CAN_Baudrate_Prescaler.vhd"
+   type="VHDL"
+   library="Can_controller_0" />
+ <file
+   path="Network_can/simulation/submodules/CAN_Bit_Timing_Logic.vhd"
+   type="VHDL"
+   library="Can_controller_0" />
+ <file
+   path="Network_can/simulation/submodules/CAN_BSP.vhd"
+   type="VHDL"
+   library="Can_controller_0" />
+ <file
+   path="Network_can/simulation/submodules/CAN_Bus.vhd"
+   type="VHDL"
+   library="Can_controller_0" />
+ <file
+   path="Network_can/simulation/submodules/CAN_Control.vhd"
+   type="VHDL"
+   library="Can_controller_0" />
+ <file
+   path="Network_can/simulation/submodules/CAN_Controller_Top.vhd"
+   type="VHDL"
+   library="Can_controller_0" />
+ <file
+   path="Network_can/simulation/submodules/CAN_CRC.vhd"
+   type="VHDL"
+   library="Can_controller_0" />
+ <file
+   path="Network_can/simulation/submodules/CAN_Interface.vhd"
+   type="VHDL"
+   library="Can_controller_0" />
+ <file
+   path="Network_can/simulation/submodules/CAN_Message.vhd"
+   type="VHDL"
+   library="Can_controller_0" />
+ <file
+   path="Network_can/simulation/submodules/CAN_Register.vhd"
+   type="VHDL"
+   library="Can_controller_0" />
+ <file
+   path="Network_can/simulation/submodules/CPU_Interface.vhd"
+   type="VHDL"
+   library="Can_controller_0" />
+ <file
+   path="Network_can/simulation/submodules/SWITCH_CTRL_CPU.vhd"
+   type="VHDL"
+   library="Can_controller_0" />
+ <file path="Network_can/simulation/Network_can.vhd" type="VHDL" />
+ <topLevel name="Network_can" />
+ <deviceFamily name="cycloneiii" />
+ <modelMap
+   controllerPath="Network_can.onchip_memory2_0"
+   modelPath="Network_can.onchip_memory2_0" />
+ <modelMap
+   controllerPath="Network_can.onchip_memory2_1"
+   modelPath="Network_can.onchip_memory2_1" />
+</simPackage>

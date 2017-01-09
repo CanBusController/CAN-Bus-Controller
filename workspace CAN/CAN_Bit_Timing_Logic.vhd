@@ -18,7 +18,6 @@ ENTITY can_bit_timing_logic IS
       -- Bit Timing Conf --
       time_reg                : IN std_logic_vector(15 DOWNTO 0);
       -- OUT/IN BSM -- 
-      rx_idle                 : OUT std_logic;
       sample_point            : OUT std_logic;     
       busmon                  : OUT std_logic;   
       hard_sync_enable        : in std_logic;
@@ -38,13 +37,8 @@ begin
   if b then return('1'); else return('0'); end if;
 end; 
 
-    SIGNAL TRANSMITTER            :  std_logic;
-    SIGNAL RECEIVER               :  std_logic;
-    SIGNAL IDLE                   :  std_logic;
-    SIGNAL rx_idle_temp           :  std_logic;
 
-    SIGNAL PB_SEGMENT2            :  std_logic_vector(2 DOWNTO 0);
-    SIGNAL rx_idle_count          :  std_logic_vector(3 DOWNTO 0);
+	  SIGNAL PB_SEGMENT2            :  std_logic_vector(2 DOWNTO 0);
     SIGNAL NTQ                    :  std_logic_vector(5 DOWNTO 0);
     SIGNAL SAMPLE                 :  std_logic_vector(3 DOWNTO 0); 
     SIGNAL TRANSMIT_POINT         :  std_logic;
@@ -56,8 +50,7 @@ end;
     SIGNAL seg2                   :  std_logic;
     SIGNAL rx_CAN_i               :  std_logic;
     SIGNAL TxCan_i                :  std_logic;
-    SIGNAL busmon_i               :  std_logic;
-    
+    SIGNAL busmon_i               :  std_logic; 
     --time--
     signal sync_jump_width          :  std_logic_vector(1 DOWNTO 0); 
     signal time_segment1            :  std_logic_vector(3 DOWNTO 0); 
@@ -67,22 +60,21 @@ end;
     
 
 BEGIN
-  
+ 
 sync_jump_width <= time_reg(15 downto 14); 
 time_segment1 <= ('0' & time_reg(2 downto 0)) + ('0' & time_reg(6 downto 4)) ;
 time_segment_temp <= time_reg(13 downto 8) - ('0' & ('0' & (time_segment1 + 1)));
 PB_SEGMENT2 <= time_segment_temp(2 downto 0);
-IDLE <= rx_idle_temp or conv_std_logic(RECEIVER='0' and TRANSMITTER ='0');
-RECEIVER <= '1' when IDLE ='0' and TRANSMITTER = '0' else '0';
-TRANSMITTER <= '1' when IDLE = '0' and rx_CAN_i = TxCan_i else '0'; 
-    
-bit_err <= not conv_std_logic( TxCan_i = rx_CAN_i ) when seg2='1';  
 
-BIT_TIMING: process(RESET,time_reg,TQ_clk , rx_CAN_i )
+SAMPLE <= time_segment1 + '1';
+NTQ <= time_reg (13 downto 8);
+	 
+	 
+bit_err <= not conv_std_logic( TxCan_i = rx_CAN_i ) when seg2='1' else '0';  
 
+BIT_TIMING: process(RESET,TQ_clk,rx_CAN_i )
 begin
       if RESET='1' then
-        bit_err<= '0';
         sample_point_i <= '0'; 
         counter <= "00010";       
         Qcounter <= "00001";
@@ -90,20 +82,7 @@ begin
         seg1<='1';
         seg2<='0';
         TRANSMIT_POINT <= '0';
-        rx_idle_count <= "0000";
-        rx_idle_temp <= '0' ;
-        RECEIVER <= '0';
-        TRANSMITTER <= '0'; 
-      end if;
-      
-      if (time_reg'event) or (RESET'event and RESET='0')then
-            SAMPLE <= time_segment1 + '1';
-            NTQ <= time_reg (13 downto 8);
-            TRANSMIT_POINT <= '0';
-      end if;
-      
-      if TQ_clk'event and TQ_clk = '1' and  RESET='0' then
-              
+      elsif TQ_clk'event and TQ_clk = '1' then
               if (counter = NTQ) then 
                 counter <= "00001";
               elsif (TRANSMIT_POINT = '0' and SAMPLE_POINT_i = '0') then
@@ -141,13 +120,6 @@ begin
               else
                     TRANSMIT_POINT <= '0';
               end if;
-              
-              IF ((counter = (SAMPLE + PB_SEGMENT2)) and (rx_idle_count < 6) and (rx_CAN_i ='1')) THEN
-                    rx_idle_count <= rx_idle_count + "0001";    
-               ELSIF (rx_idle_count = "0110" and rx_CAN_i ='1' ) THEN
-                    rx_idle_temp <= '1' ;  
-              end if;
-
 
   
       --Hard Synchronization
@@ -168,11 +140,6 @@ begin
                             end if;
                     end if;
               end if;
-
-
-      elsIF (rx_CAN_i'EVENT AND rx_CAN_i = '0') THEN
-              rx_idle_temp <= '0' ; 
-              rx_idle_count <= "0000";
       end if;
 
 end process;
@@ -183,7 +150,6 @@ busmon_i <= RxCan when SAMPLE_POINT_i ='1';
 busmon <= busmon_i;
 TxCan_i <= bus_drive when TRANSMIT_POINT ='1';
 TxCan <= TxCan_i;
-rx_idle <= rx_idle_temp;
 
 END ARCHITECTURE RTL;  
    

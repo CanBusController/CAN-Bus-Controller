@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="Network_can">
+		<CBX_INST_ENTRY INSTANCE_NAME="|Network_can|Network_can_nios2_qsys_0:nios2_qsys_0|Network_can_nios2_qsys_0_nios2_oci:the_Network_can_nios2_qsys_0_nios2_oci|Network_can_nios2_qsys_0_nios2_ocimem:the_Network_can_nios2_qsys_0_nios2_ocimem|Network_can_nios2_qsys_0_ociram_sp_ram_module:Network_can_nios2_qsys_0_ociram_sp_ram|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_7j91.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Network_can|Network_can_nios2_qsys_0:nios2_qsys_0|Network_can_nios2_qsys_0_register_bank_a_module:Network_can_nios2_qsys_0_register_bank_a|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_kch1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Network_can|Network_can_nios2_qsys_0:nios2_qsys_0|Network_can_nios2_qsys_0_register_bank_b_module:Network_can_nios2_qsys_0_register_bank_b|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_lch1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Network_can|Network_can_nios2_qsys_1:nios2_qsys_1|Network_can_nios2_qsys_1_nios2_oci:the_Network_can_nios2_qsys_1_nios2_oci|Network_can_nios2_qsys_1_nios2_ocimem:the_Network_can_nios2_qsys_1_nios2_ocimem|Network_can_nios2_qsys_1_ociram_sp_ram_module:Network_can_nios2_qsys_1_ociram_sp_ram|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_8j91.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Network_can|Network_can_nios2_qsys_1:nios2_qsys_1|Network_can_nios2_qsys_1_register_bank_a_module:Network_can_nios2_qsys_1_register_bank_a|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_mch1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Network_can|Network_can_nios2_qsys_1:nios2_qsys_1|Network_can_nios2_qsys_1_register_bank_b_module:Network_can_nios2_qsys_1_register_bank_b|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_nch1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Network_can|Network_can_onchip_memory2_0:onchip_memory2_0|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_1fd1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Network_can|Network_can_onchip_memory2_1:onchip_memory2_1|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_2fd1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>
