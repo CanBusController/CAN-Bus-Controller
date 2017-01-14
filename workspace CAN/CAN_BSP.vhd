@@ -79,7 +79,8 @@ architecture arch_can_bsp of can_bsp is
     signal six_consecutive_recessive : std_logic_vector(3 downto 0):=X"0";
     signal active_error_flag_first_dominant : std_logic:='0';
     signal intermission_read_sof: std_logic:='0';
-
+	signal stuff_error : std_logic:='0';
+	signal debug: std_logic_vector(127 downto 0);
 
 
 begin
@@ -103,7 +104,7 @@ begin
 
     bsp_engine:process(rst, clk)
         variable next_bit:std_logic;
-        variable frame_position:integer range 1 to 128:=1 ; --frame length is 108
+        variable frame_position:integer range 1 to 128:=2 ; --frame length is 108
         variable receive_recessive_stuff_counter : integer range 0 to 6:=0;
         variable receive_dominant_stuff_counter : integer range 0 to 6:=0;
         variable tx_recessive_stuff_counter : integer range 0 to 6:=0;
@@ -124,7 +125,7 @@ begin
             active_error_flag_first_dominant<='0'; 
             intermission_read_sof<='0';
             general_counter<=X"0";
-            frame_position:=1;
+            frame_position:=2;
             crc_init<='1';
             crc_enable<='0';
             receive_recessive_stuff_counter:=0; 
@@ -173,6 +174,7 @@ begin
                             end if;
                         end if ;
                     when I =>
+			crc_init<='1';
                         hard_sync_en<='1';
                         --receiving : wait for dominant bit marking the start of frame
                         --            The node becomes receiver with setting STATUS to RECEIVING and
@@ -181,6 +183,7 @@ begin
                             hard_sync_en<='0';
                             stuff_enable<='1';
                             field<=ID;
+			    frame_position:=2;
                             receive_dominant_stuff_counter:=1;
                             ns<=RCV;
                         else
@@ -371,7 +374,7 @@ begin
                           end if;
                       end if ;
                   when others => 
-                      if ( frame_position = 109 ) then
+                      if ( frame_position > 108 ) then
                           if ( crc_error = '0') then
                               --receiving success
                               rx_id<=rx_inner_id;
@@ -382,34 +385,35 @@ begin
                           else
                               rx_valid<='0';
                           end if ;
-                          frame_position:=1;
+                          frame_position:=2;
                           ns<=I;
-                      else
-                          rx_valid<='0';
                       end if ;
-                      if ( receive_dominant_stuff_counter < 5 or receive_recessive_stuff_counter < 5 ) then
+                      if ( receive_dominant_stuff_counter < 5 and receive_recessive_stuff_counter < 5 ) then
                           --part 1 : not a stuff bit
-                          --running crc
+                          next_bit:=rcv_bit;
                           if ( frame_position>=2 and frame_position <=12 ) then
                               rx_inner_id(10-(frame_position-2))<=rcv_bit;
                           elsif( frame_position = 13 ) then
                               rx_inner_rtr<=rcv_bit;
+			  elsif ( frame_position = 14 or frame_position = 15 ) then
+				next_bit:=rcv_bit;
                           elsif ( frame_position >=16 and frame_position <= 19 ) then
                               rx_inner_dlc(3-(frame_position-16))<=rcv_bit;
-                          elsif ( frame_position <= 19 + 8 * unsigned(rx_inner_dlc) ) then
+                          elsif ( frame_position>19 and frame_position <= 19 + 8 * unsigned(rx_inner_dlc) ) then
                               rx_inner_data(63-(frame_position-20))<=rcv_bit;
-                          elsif ( frame_position <= 34 + 8 * unsigned(rx_inner_dlc)) then
+                          elsif ( frame_position > 19 + 8 * unsigned(rx_inner_dlc)and frame_position <= 34 + 8 * unsigned(rx_inner_dlc)) then
                               rx_inner_crc(14-(frame_position-(20+8*to_integer(unsigned(rx_inner_dlc)) )))<=rcv_bit; 
-                          elsif ( frame_position <= 35 + 8 * unsigned(rx_inner_dlc)) then
+                          elsif ( frame_position > 34 + 8 * unsigned(rx_inner_dlc) and frame_position <= 35 + 8 * unsigned(rx_inner_dlc)) then
                               if ( rcv_bit /= '1' ) then
                                   --crc delimiter must be recessive otherwise it's an error
                                   field<=ACTIVE_ERROR_FLAG;
                               end if ;
-                          elsif ( frame_position <= 44 + 8 * unsigned(rx_inner_dlc)) then
+                          elsif ( frame_position > 35 + 8 * unsigned(rx_inner_dlc) and frame_position <= 44 + 8 * unsigned(rx_inner_dlc)) then
                               --the remaining bits must be recessive
                               if ( rcv_bit /= '1' ) then
                                   field<=ACTIVE_ERROR_FLAG;
                               end if ;
+
                           end if ;
                           if ( frame_position <= 98 ) then
                               crc_input<=rcv_bit;
@@ -419,14 +423,22 @@ begin
                               crc_enable<='0';
                           end if ;
                           frame_position:=frame_position+1;
+				
+                   	   if (rcv_bit = '1' ) then 
+                    	      receive_dominant_stuff_counter:=0;
+                    	      receive_recessive_stuff_counter:=receive_recessive_stuff_counter+1;
+                   	   elsif ( rcv_bit = '0' ) then
+                   	       receive_recessive_stuff_counter:=0;
+                    	      receive_dominant_stuff_counter:=receive_dominant_stuff_counter+1;
+                   	   end if ;
                       else
                           --part 2 : a stuff bit and it must be the complement of the previous bit
-                          if ( next_bit /= rcv_bit ) then
+                          if ( next_bit = rcv_bit ) then
                               --stuff error
-                          --    crc_sequence<="000000000000000";
                               crc_enable<='0';
-                              frame_position:=1;
+                              frame_position:=2;
                               rx_valid<='0';
+			      stuff_error<='1';
                               field<=ACTIVE_ERROR_FLAG;
                           end if;
                           crc_enable<='0';
@@ -434,13 +446,6 @@ begin
                           receive_recessive_stuff_counter:=0;
                       end if;
 
-                      if (rcv_bit = '1' ) then 
-                          receive_dominant_stuff_counter:=0;
-                          receive_recessive_stuff_counter:=receive_recessive_stuff_counter+1;
-                      elsif ( rcv_bit = '0' ) then
-                          receive_recessive_stuff_counter:=0;
-                          receive_dominant_stuff_counter:=receive_dominant_stuff_counter+1;
-                      end if ;
               end case ;
           when TRAN =>
               case field is 
@@ -745,7 +750,7 @@ begin
                           next_bit:='1';
                       else
                           tx_done<='1';
-                          frame_position:=1;
+                          frame_position:=2;
                           field<=ID;
                           ns<=I;
                       end if ;
@@ -760,7 +765,14 @@ begin
                       end if ;
                   end if ;
                   bus_drive<=next_bit;
-                  frame_position:=frame_position+1;
+		  if ( frame_position <= 108) then
+                  	frame_position:=frame_position+1;
+		  else 
+                          tx_done<='1';
+                          frame_position:=2;
+                          field<=ID;
+                          ns<=I;
+		  end if ;
               end if ;
       end case ;
   when others => 
