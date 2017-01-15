@@ -38,8 +38,7 @@ begin
 	brp<="000010";
 	wait for 10*clk_period;
 	brp<="001000";
-	wait for 20*clk_period;
-	brp<="000100";
-	wait for 10 * clk_period;
+	wait for 10*clk_period;
+	
 	end process;
 end architecture ;
