@@ -2,7 +2,7 @@ set_global_assignment -entity "Network_can" -library "Network_can" -name IP_TOOL
 set_global_assignment -entity "Network_can" -library "Network_can" -name IP_TOOL_VERSION "13.1"
 set_global_assignment -entity "Network_can" -library "Network_can" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "Network_can" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../../Network_can.sopcinfo"]
-set_global_assignment -entity "Network_can" -library "Network_can" -name SLD_INFO "QSYS_NAME Network_can HAS_SOPCINFO 1 GENERATION_ID 1483981054"
+set_global_assignment -entity "Network_can" -library "Network_can" -name SLD_INFO "QSYS_NAME Network_can HAS_SOPCINFO 1 GENERATION_ID 1484480112"
 set_global_assignment -name SYNTHESIS_ONLY_QIP ON
 set_global_assignment -library "Network_can" -name MISC_FILE [file join $::quartus(qip_path) "../../../Network_can.qsys"]
 

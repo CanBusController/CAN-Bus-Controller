@@ -90,6 +90,8 @@ component can_baudrate_prescaler is
       clk_eQ                  : OUT std_logic);   
 end component; 
 
+
+
 component can_bit_timing_logic is
    PORT (
       clk                         : IN std_logic; 

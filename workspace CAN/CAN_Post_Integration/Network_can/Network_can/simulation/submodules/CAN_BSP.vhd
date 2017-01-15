@@ -40,7 +40,7 @@ architecture arch_can_bsp of can_bsp is
                  data       :  in std_logic;
                  enable     :  in std_logic;
                  initialize :  in std_logic;
-                 crc        :  out std_logic_vector(14 downto 0) 
+                 crc        :  buffer std_logic_vector(14 downto 0) 
              );
     end component ;
 
@@ -55,19 +55,17 @@ architecture arch_can_bsp of can_bsp is
         --Data_Length_Code[1..4], Data_Field[1..8bytes], CRC_Sequence[1..15], CRC_Delimiter[1], ACK_Slot[1], ACK_Delimiter[1],
         --End_Of_Frame[1..7], active_error_flag[1..6], passive_error_flag[1..6], error_delimiter[2..8], overload_flag[1..6],
         --overload_delimiter[2..8], intermission[1..3], suspend_transmission[1..8]
-
-        --Each bit of a CAN protocol frame can be referenced by its FIELD and POSITION 
-    signal crc_sequence: std_logic_vector(14 downto 0) ;
+    signal crc_sequence: std_logic_vector(14 downto 0);
     signal crc_init: std_logic:='0';
     signal crc_enable: std_logic:='0';
     signal crc_input:std_logic:='0';
     signal receive_error_counter : std_logic_vector(7 downto 0):=X"00"; --used to count 128 occurences of 11 recessive bits
     signal transmit_error_counter : std_logic_vector(7 downto 0):=X"00";
-    signal rx_inner_id:std_logic_vector(10 downto 0) :=(others=>'0');
-    signal rx_inner_data:std_logic_vector(63 downto 0) :=(others=>'0');
-    signal rx_inner_dlc:std_logic_vector(3 downto 0) :=(others=>'0');
-    signal rx_inner_crc: std_logic_vector(14 downto 0) :=(others=>'0');
-    signal rx_inner_rtr: std_logic :='0';
+    signal rx_inner_id:std_logic_vector(10 downto 0);
+    signal rx_inner_data:std_logic_vector(63 downto 0);
+    signal rx_inner_dlc:std_logic_vector(3 downto 0);
+    signal rx_inner_crc: std_logic_vector(14 downto 0);
+    signal rx_inner_rtr: std_logic;
     signal field : can_field_type:=SOF;
     signal position : std_logic_vector(3 downto 0):=X"1"; --used to count 11 recessive bit in BRO and position in frame
         --field
@@ -94,7 +92,7 @@ begin
                                         crc        =>  crc_sequence
                                     );
 
-    sync_process:process(clk)
+    sync_process:process(clk, rst)
     begin
         if ( rst = '1' ) then
             ps<=WFBI;
@@ -103,7 +101,7 @@ begin
         end if;
     end process ;
 
-    bsp_engine:process(clk, rst, ns)
+    bsp_engine:process(rst, clk)
         variable next_bit:std_logic;
         variable frame_position:integer range 1 to 128:=1 ; --frame length is 108
         variable receive_recessive_stuff_counter : integer range 0 to 6:=0;
@@ -114,7 +112,7 @@ begin
         variable rx_dominant_stuff_counter : integer range 0 to 6:=0;
         variable crc_error: std_logic:='0';
     begin
-        if ( rst = '1' ) then
+        if ( clk='1' and rst = '1' ) then
             --initialization 
             tx_done<='0';
             receive_error_counter<=X"00";
@@ -131,7 +129,7 @@ begin
             crc_enable<='0';
             receive_recessive_stuff_counter:=0; 
             receive_dominant_stuff_counter:=0;
-        elsif ( clk'event and clk='1') then
+        elsif (  clk='1') then
             crc_init<='0';
             if ( process_bit='1') then
                 --stuff assignement
@@ -425,7 +423,7 @@ begin
                           --part 2 : a stuff bit and it must be the complement of the previous bit
                           if ( next_bit /= rcv_bit ) then
                               --stuff error
-                              crc_init<='1';
+                          --    crc_sequence<="000000000000000";
                               crc_enable<='0';
                               frame_position:=1;
                               rx_valid<='0';

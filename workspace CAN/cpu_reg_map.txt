@@ -70,7 +70,8 @@ FOR WRITE :
 --	RJW1..0		Resychronaization jump width Bits 																														---
 -- 	PRSC4..0	Prescaler Bits 																																			---
 --	PS2..0		Propagation Segment bits																																---
---	PBS1_2..0	Phase Buffer Segment 1 Bits 																															---
+--	PBS1_2..0	Phase Buffer Segment 1 Bits 																
+exemple : 0100100000110010															---
 --																																										---
 --																																										---
 --																																										---

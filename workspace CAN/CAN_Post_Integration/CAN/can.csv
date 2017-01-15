@@ -1,12 +1,12 @@
-# system info can on 2017.01.09.12:16:30
+# system info can on 2017.01.15.11:05:25
 system_info:
 name,value
 DEVICE,EP3C25F324C6
 DEVICE_FAMILY,Cyclone III
-GENERATION_ID,1483964127
+GENERATION_ID,1484478283
 #
 #
-# Files generated for can on 2017.01.09.12:16:30
+# Files generated for can on 2017.01.15.11:05:25
 files:
 filepath,kind,attributes,module,is_top
 can/simulation/can.vhd,VHDL,,can,true

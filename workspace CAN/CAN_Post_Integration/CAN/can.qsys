@@ -164,9 +164,9 @@
   <parameter name="cpuID_stored" value="0" />
   <parameter name="breakOffset" value="32" />
   <parameter name="userDefinedSettings" value="" />
-  <parameter name="resetSlave">nios2_qsys_0.jtag_debug_module</parameter>
+  <parameter name="resetSlave" value="onchip_memory2_0.s1" />
   <parameter name="mmu_TLBMissExcSlave" value="None" />
-  <parameter name="exceptionSlave">nios2_qsys_0.jtag_debug_module</parameter>
+  <parameter name="exceptionSlave" value="onchip_memory2_0.s1" />
   <parameter name="breakSlave">nios2_qsys_0.jtag_debug_module</parameter>
   <parameter name="setting_perfCounterWidth" value="32" />
   <parameter name="setting_interruptControllerType" value="Internal" />

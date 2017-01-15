@@ -16,38 +16,32 @@ entity can_crc is
              data       :  in std_logic;
              enable     :  in std_logic;
              initialize :  in std_logic;
-             crc        :  out std_logic_vector(14 downto 0) 
+             crc        :  buffer std_logic_vector(14 downto 0) 
          );
 end entity; 
 
 
 architecture arch_can_crc of can_crc is 
-
-	 
-   SIGNAL crc_next                 :  std_logic;   
-   SIGNAL crc_tmp                  :  std_logic_vector(14 DOWNTO 0);   
-   SIGNAL crc_tmp2                 :  std_logic_vector(14 DOWNTO 0);   
-
-BEGIN
-   crc <= crc_tmp2;
-   crc_next <= data XOR crc_tmp2(14) ;
-   crc_tmp <= crc_tmp2(13 DOWNTO 0) & '0' ;
-
-   PROCESS (clk)
-   BEGIN
-      IF (clk'EVENT AND clk = '1') THEN
-         IF (initialize = '1') THEN
-            crc_tmp2 <= "000000000000000";    
-         ELSE
-            IF (enable = '1') THEN
-               IF (crc_next = '1') THEN
-                  crc_tmp2 <= crc_tmp XOR "100010110011001";    
-               ELSE
-                  crc_tmp2 <= crc_tmp ;    
-               END IF;
-            END IF;
-         END IF;
-      END IF;
-   END PROCESS;
+    signal crc_next: std_logic;
+    signal crc_tmp : std_logic_vector(14 downto 0);
+begin 
+    crc_next <= ( data xor crc(14) ) ;
+    crc_tmp <= ( crc(13  downto 0 ) & '0' ); --left shift by one position
+    process(clk) 
+    begin
+        if ( clk'EVENT and clk = '1' ) then
+            if ( initialize='1' ) then 
+                crc <= std_logic_vector(to_unsigned(0, 15))  ;
+            else 
+                if ( enable='1' ) then 
+                    if ( crc_next='1' ) then 
+                        crc <= ( crc_tmp xor std_logic_vector(to_signed(17817, 15)));
+                    else 
+                        crc <= crc_tmp ;
+                    end if;
+                end if;
+            end if;
+        end if ;
+    end process;
     
 end arch_can_crc; 

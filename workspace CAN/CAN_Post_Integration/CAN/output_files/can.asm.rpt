@@ -1,5 +1,5 @@
 Assembler report for can
-Mon Jan 09 12:18:35 2017
+Sun Jan 15 11:08:57 2017
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Mon Jan 09 12:18:35 2017 ;
+; Assembler Status      ; Successful - Sun Jan 15 11:08:57 2017 ;
 ; Revision Name         ; can                                   ;
 ; Top-level Entity Name ; can                                   ;
 ; Family                ; Cyclone III                           ;
@@ -102,8 +102,8 @@ applicable agreement for further details.
 ; Option         ; Setting                                                      ;
 +----------------+--------------------------------------------------------------+
 ; Device         ; EP3C25F324C6                                                 ;
-; JTAG usercode  ; 0x0031D334                                                   ;
-; Checksum       ; 0x0031D334                                                   ;
+; JTAG usercode  ; 0x003247E1                                                   ;
+; Checksum       ; 0x003247E1                                                   ;
 +----------------+--------------------------------------------------------------+
 
 
@@ -113,14 +113,14 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Mon Jan 09 12:18:33 2017
+    Info: Processing started: Sun Jan 15 11:08:53 2017
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off can -c can
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 468 megabytes
-    Info: Processing ended: Mon Jan 09 12:18:35 2017
-    Info: Elapsed time: 00:00:02
+    Info: Peak virtual memory: 464 megabytes
+    Info: Processing ended: Sun Jan 15 11:08:57 2017
+    Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:02
 
 

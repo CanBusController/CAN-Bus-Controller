@@ -5,6 +5,8 @@
   <columns>
    <connections preferredWidth="127" />
    <irq preferredWidth="34" />
+   <baseaddress preferredWidth="102" />
+   <endaddress preferredWidth="81" />
   </columns>
  </systemtable>
  <clocktable>
@@ -14,7 +16,7 @@
    <frequency preferredWidth="163" />
   </columns>
  </clocktable>
- <window width="1100" height="728" x="0" y="0" />
+ <window width="1382" height="744" x="-8" y="-8" />
  <library
    expandedCategories="Library/Qsys Interconnect/Memory-Mapped,Library/Interface Protocols/Ethernet/Example,Library/Bridges,Library/Interface Protocols/Ethernet,Library/Bridges/Streaming,Library/Memories and Memory Controllers/External Memory Interfaces/Pattern Generators,Library/Memories and Memory Controllers/On-Chip,Library/Embedded Processors,Library/Bridges/Memory-Mapped,Library/Verification/Debug &amp; Performance,Library/Interface Protocols/SDI,Library/Peripherals/Display,Project,Library/Memories and Memory Controllers/External Memory Interfaces,Library/DSP/Video and Image Processing,Library/Peripherals,Library/Verification,Library/Interface Protocols,Library/Interface Protocols/PCI,Library/Verification/Simulation,Library/DSP,Library/Peripherals/Multiprocessor Coordination,Library/Interface Protocols/RapidIO,Library/Memories and Memory Controllers,Library/Qsys Interconnect/AHB,Library/Qsys Interconnect,Library/Qsys Interconnect/Tri-State Components,Library" />
  <generation simulation="VHDL" path="can" synthesis="VHDL" />
