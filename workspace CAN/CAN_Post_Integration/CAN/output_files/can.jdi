@@ -1,6 +1,6 @@
 <sld_project_info>
   <project>
-    <hash md5_digest_80b="60497fe78446420e1696"/>
+    <hash md5_digest_80b="24b32a8c640fd16c127e"/>
   </project>
   <file_info>
     <file device="EP3C25F324C6" path="can.sof" usercode="0xFFFFFFFF"/>
@@ -85,13 +85,13 @@
   <sld_infos>
     <sld_info hpath="" name="">
       <assignment_values>
-        <assignment_value text="QSYS_NAME can HAS_SOPCINFO 1 GENERATION_ID 1483964234"/>
+        <assignment_value text="QSYS_NAME can HAS_SOPCINFO 1 GENERATION_ID 1484478457"/>
       </assignment_values>
       <parameters/>
     </sld_info>
     <sld_info hpath="sld_hub:auto_hub" name="auto_hub">
       <assignment_values>
-        <assignment_value text="QSYS_NAME can HAS_SOPCINFO 1 GENERATION_ID 1483964234"/>
+        <assignment_value text="QSYS_NAME can HAS_SOPCINFO 1 GENERATION_ID 1484478457"/>
       </assignment_values>
       <parameters/>
     </sld_info>

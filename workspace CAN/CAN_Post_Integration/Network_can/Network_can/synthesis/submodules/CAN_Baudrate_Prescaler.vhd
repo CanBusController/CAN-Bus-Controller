@@ -1,70 +1,35 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_misc.all;
 
-LIBRARY ieee;
-USE ieee.std_logic_1164.all;
-USE ieee.std_logic_unsigned.all;
-USE ieee.std_logic_arith.all;
-
-ENTITY can_baudrate_prescaler IS
-   PORT (
+entity CAN_baudrate_prescaler is
+	port (     
       clk                     : IN std_logic;   
       rst                     : IN std_logic;   
       baud_r_presc            : IN std_logic_vector(5 DOWNTO 0);    
-      clk_eQ                  : OUT std_logic);   
-END ENTITY can_baudrate_prescaler;
+      clk_eQ                  : OUT std_logic
+);   
+end entity ;
 
+architecture arch of CAN_baudrate_prescaler is
 
-
-ARCHITECTURE RTL OF can_baudrate_prescaler IS
-
-function conv_std_logic(b : boolean) return std_ulogic is
+signal baud_count : integer range 0 to 64 ;
 begin
-  if b then return('1'); else return('0'); end if;
-end;
 
-   SIGNAL preset_cnt               :  std_logic_vector(7 DOWNTO 0);  
-   SIGNAL clk_cnt                  :  std_logic_vector(6 DOWNTO 0);   
-   SIGNAL clk_en                   :  std_logic;   
-   SIGNAL clk_en_q                 :  std_logic;   
+	baud_timer: process(clk,rst)
+	begin
+	if ( rst = '1' ) then
+		baud_count<=0;
 
-BEGIN
-  
-preset_cnt <=  (('0' & baud_r_presc) + 1) & "0" ;
-clk_eQ <= clk_en_q;
-
-
-   PROCESS (clk, rst)
-   BEGIN
-      IF (rst = '1') THEN
-         clk_cnt <= "0000000";
-      ELSIF (clk'EVENT AND clk = '1') THEN
-         IF (('0' & clk_cnt) >= (preset_cnt - "00000001")) THEN
-            clk_cnt <= "0000000";
-         ELSE
-            clk_cnt <= clk_cnt + "0000001" ; 
-         END IF;
-      END IF;
-   END PROCESS;
-
-   PROCESS (clk, rst)
-   BEGIN
-      IF (rst = '1') THEN
-         clk_en <= '0';    
-      ELSIF (clk'EVENT AND clk = '1') THEN
-         IF (('0' & clk_cnt) = (preset_cnt - "00000001")) THEN
-            clk_en <= '1' ;    
-         ELSE
-            clk_en <= '0' ;    
-         END IF;
-      END IF;
-   END PROCESS;
-
-   PROCESS (clk, rst)
-   BEGIN
-      IF (rst = '1') THEN
-         clk_en_q <= '0';    
-      ELSIF (clk'EVENT AND clk = '1') THEN
-         clk_en_q <= clk_en ;    
-      END IF;
-   END PROCESS;
-   
-END ARCHITECTURE RTL;
+	elsif clk'event and clk='1' then
+		if baud_count=unsigned(baud_r_presc)then
+			baud_count <= 0;
+			clk_eQ <= '1';
+		else
+			baud_count <= baud_count + 1;
+			clk_eQ <= '0';
+		end if;
+	end if;
+	end process baud_timer;
+end architecture;

@@ -49,7 +49,7 @@ end;
     SIGNAL seg1                   :  std_logic;   
     SIGNAL seg2                   :  std_logic;
     SIGNAL rx_CAN_i               :  std_logic;
-    SIGNAL TxCan_i                :  std_logic;
+    SIGNAL TxCan_i                :  std_logic:='1';
     SIGNAL busmon_i               :  std_logic; 
     --time--
     signal sync_jump_width          :  std_logic_vector(1 DOWNTO 0); 
@@ -70,7 +70,7 @@ SAMPLE <= time_segment1 + '1';
 NTQ <= time_reg (13 downto 8);
 	 
 	 
-bit_err <= not conv_std_logic( TxCan_i = rx_CAN_i ) when seg2='1' else '0';  
+bit_err <= not conv_std_logic( TxCan_i = rx_CAN_i ) when seg2='1' ;  
 
 BIT_TIMING: process(RESET,TQ_clk,rx_CAN_i )
 begin
@@ -78,6 +78,7 @@ begin
         sample_point_i <= '0'; 
         counter <= "00010";       
         Qcounter <= "00001";
+        
         sync<='0';
         seg1<='1';
         seg2<='0';
@@ -148,7 +149,8 @@ rx_CAN_i <= RxCan;
 sample_point <= SAMPLE_POINT_i;
 busmon_i <= RxCan when SAMPLE_POINT_i ='1';
 busmon <= busmon_i;
-TxCan_i <= bus_drive when TRANSMIT_POINT ='1';
+TxCan_i <= bus_drive when TRANSMIT_POINT ='1' else 
+              '1' when RESET = '1' ;
 TxCan <= TxCan_i;
 
 END ARCHITECTURE RTL;  

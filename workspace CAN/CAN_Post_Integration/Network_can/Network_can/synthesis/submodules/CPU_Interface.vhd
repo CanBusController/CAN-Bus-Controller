@@ -234,17 +234,17 @@ ARCHITECTURE RTL OF CPU_INTERFACE IS
 								time_reg_in_sig (15 DOWNTO 4) 	<= time_reg_out(15 DOWNTO 4) ;
 						WHEN "000010"	=>	
 						    time_reg_we_sig 		  <= '1';  
-								time_reg_in_sig (6 DOWNTO 4) 	<= from_cpu_bus(6 DOWNTO 4) ;
+								time_reg_in_sig (6 DOWNTO 4) 	<= from_cpu_bus(2 DOWNTO 0) ;
 								time_reg_in_sig (15 DOWNTO 7)	<= time_reg_out(15 DOWNTO 7) ;
 								time_reg_in_sig (3 DOWNTO 0) 	<= time_reg_out(3 DOWNTO 0) ;
 						WHEN "000011" 	=>	
 						    time_reg_we_sig 		  <= '1';  
-								time_reg_in_sig (12 DOWNTO 8) 	<= from_cpu_bus(12 DOWNTO 8) ;
+								time_reg_in_sig (12 DOWNTO 8) 	<= from_cpu_bus(4 DOWNTO 0) ;
 								time_reg_in_sig (15 DOWNTO 13) 	<= time_reg_out(15 DOWNTO 13) ;
 								time_reg_in_sig (7 DOWNTO 0) 	<= time_reg_out( 7 DOWNTO 0) ;
 						WHEN "000100" 	=>	
 						    time_reg_we_sig 		  <= '1';  
-								time_reg_in_sig (15 DOWNTO 13) 	<= from_cpu_bus(15 DOWNTO 13) ;
+								time_reg_in_sig (15 DOWNTO 13) 	<= from_cpu_bus(2 DOWNTO 0) ;
 								time_reg_in_sig (12 DOWNTO 0) 	<= time_reg_out(12 DOWNTO 0) ;
 						WHEN "001000" | "001001" | "001010" | "001011"	=>	
 									tx_data_id1_we_sig <= '1' ;
@@ -255,11 +255,11 @@ ARCHITECTURE RTL OF CPU_INTERFACE IS
 											tx_data_id1_in_sig (12 DOWNTO 0) 	<=	 from_cpu_bus(12 DOWNTO 0) ;
 											tx_data_id1_in_sig (15 DOWNTO 13) 	<=	 tx_data_id1_out(15 DOWNTO 13) ;
 										WHEN  "001010" =>
-											tx_data_id1_in_sig (14) 			<=	 from_cpu_bus(14) ;
+											tx_data_id1_in_sig (14) 			<=	 from_cpu_bus(0) ;
 											tx_data_id1_in_sig (13 DOWNTO 0) 	<=	 tx_data_id1_out(13 DOWNTO 0) ;
 											tx_data_id1_in_sig (15) 			<=	 tx_data_id1_out(15) ;
 										WHEN  "001011" =>
-											tx_data_id1_in_sig (15) 			<=	 from_cpu_bus(15) ;
+											tx_data_id1_in_sig (15) 			<=	 from_cpu_bus(0) ;
 											tx_data_id1_in_sig (14 DOWNTO 0) 	<=	 tx_data_id1_out(14 DOWNTO 0) ;
 										WHEN OTHERS => NULL ;
 									END CASE ;
@@ -277,11 +277,11 @@ ARCHITECTURE RTL OF CPU_INTERFACE IS
 											tx_data_conf_in_sig(3 DOWNTO 0) 	<=	from_cpu_bus(3 DOWNTO 0) ;
 											tx_data_conf_in_sig(15 DOWNTO 4)	<=	tx_data_conf_out(15 DOWNTO 4) ;
 										WHEN  "011010" =>
-											tx_data_conf_in_sig(14) 			<=	from_cpu_bus(14) ;
+											tx_data_conf_in_sig(14) 			<=	from_cpu_bus(0) ;
 											tx_data_conf_in_sig(15)				<=	tx_data_conf_out(15) ;
 											tx_data_conf_in_sig(13 DOWNTO 0)	<=	tx_data_conf_out(13 DOWNTO 0) ;
 										WHEN  "011011" =>
-											tx_data_conf_in_sig(15) 			<=	from_cpu_bus(15) ;
+											tx_data_conf_in_sig(15) 			<=	from_cpu_bus(0) ;
 											tx_data_conf_in_sig(14 DOWNTO 0)	<=	tx_data_conf_out(14 DOWNTO 0) ;
 										WHEN OTHERS => NULL ;
 									END CASE ;
@@ -297,7 +297,7 @@ ARCHITECTURE RTL OF CPU_INTERFACE IS
 											tx_data_1_2_in_sig (7 DOWNTO 0) 	<=	from_cpu_bus(7 DOWNTO 0) ;
 											tx_data_1_2_in_sig (15 DOWNTO 8)	<=	tx_data_1_2_out(15 DOWNTO 8) ;
 										WHEN  "100010" =>
-											tx_data_1_2_in_sig(15 DOWNTO 8) 	<=	from_cpu_bus(15 DOWNTO 8) ;
+											tx_data_1_2_in_sig(15 DOWNTO 8) 	<=	from_cpu_bus(7 DOWNTO 0) ;
 											tx_data_1_2_in_sig(7 DOWNTO 0)		<=	tx_data_1_2_out(7 DOWNTO 0) ;
 										WHEN OTHERS => NULL ;
 									END CASE ;
@@ -310,7 +310,7 @@ ARCHITECTURE RTL OF CPU_INTERFACE IS
 											tx_data_3_4_in_sig (7 DOWNTO 0) 	<=	from_cpu_bus(7 DOWNTO 0) ;
 											tx_data_3_4_in_sig (15 DOWNTO 8)	<=	tx_data_3_4_out(15 DOWNTO 8) ;
 										WHEN  "101010" =>
-											tx_data_3_4_in_sig(15 DOWNTO 8) 	<=	from_cpu_bus(15 DOWNTO 8) ;
+											tx_data_3_4_in_sig(15 DOWNTO 8) 	<=	from_cpu_bus(7 DOWNTO 0) ;
 											tx_data_3_4_in_sig(7 DOWNTO 0)		<=	tx_data_3_4_out(7 DOWNTO 0) ;
 										WHEN OTHERS => NULL ;
 									END CASE ;
@@ -323,7 +323,7 @@ ARCHITECTURE RTL OF CPU_INTERFACE IS
 											tx_data_5_6_in_sig (7 DOWNTO 0) 	<=	from_cpu_bus(7 DOWNTO 0) ;
 											tx_data_5_6_in_sig (15 DOWNTO 8)	<=	tx_data_5_6_out(15 DOWNTO 8) ;
 										WHEN  "110010" =>
-											tx_data_5_6_in_sig(15 DOWNTO 8) 	<=	from_cpu_bus(15 DOWNTO 8) ;
+											tx_data_5_6_in_sig(15 DOWNTO 8) 	<=	from_cpu_bus(7 DOWNTO 0) ;
 											tx_data_5_6_in_sig(7 DOWNTO 0)		<=	tx_data_5_6_out(7 DOWNTO 0) ;
 										WHEN OTHERS => NULL ;
 									END CASE ;
@@ -336,7 +336,7 @@ ARCHITECTURE RTL OF CPU_INTERFACE IS
 											tx_data_7_8_in_sig (7 DOWNTO 0) 	<=	from_cpu_bus(7 DOWNTO 0) ;
 											tx_data_7_8_in_sig (15 DOWNTO 8)	<=	tx_data_7_8_out(15 DOWNTO 8) ;
 										WHEN  "111010" =>
-											tx_data_7_8_in_sig(15 DOWNTO 8) 	<=	from_cpu_bus(15 DOWNTO 8) ;
+											tx_data_7_8_in_sig(15 DOWNTO 8) 	<=	from_cpu_bus(7 DOWNTO 0) ;
 											tx_data_7_8_in_sig(7 DOWNTO 0)		<=	tx_data_7_8_out(7 DOWNTO 0) ;
 										WHEN OTHERS => NULL ;
 									END CASE ;

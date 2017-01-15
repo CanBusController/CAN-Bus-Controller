@@ -1,6 +1,6 @@
 <sld_project_info>
   <project>
-    <hash md5_digest_80b="3d7cf3547fa0a5d421d2"/>
+    <hash md5_digest_80b="0377bbab6f67dc18dae3"/>
   </project>
   <file_info>
     <file device="EP3C25F324C6" path="Network_can.sof" usercode="0xFFFFFFFF"/>
@@ -159,13 +159,13 @@
   <sld_infos>
     <sld_info hpath="" name="">
       <assignment_values>
-        <assignment_value text="QSYS_NAME Network_can HAS_SOPCINFO 1 GENERATION_ID 1483981054"/>
+        <assignment_value text="QSYS_NAME Network_can HAS_SOPCINFO 1 GENERATION_ID 1484480112"/>
       </assignment_values>
       <parameters/>
     </sld_info>
     <sld_info hpath="sld_hub:auto_hub" name="auto_hub">
       <assignment_values>
-        <assignment_value text="QSYS_NAME Network_can HAS_SOPCINFO 1 GENERATION_ID 1483981054"/>
+        <assignment_value text="QSYS_NAME Network_can HAS_SOPCINFO 1 GENERATION_ID 1484480112"/>
       </assignment_values>
       <parameters/>
     </sld_info>

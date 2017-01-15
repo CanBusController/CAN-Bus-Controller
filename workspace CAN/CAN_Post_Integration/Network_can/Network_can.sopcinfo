@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="Network_can" kind="Network_can" version="1.0" fabric="QSYS">
  <!-- Format version 13.1 162 (Future versions may contain additional information.) -->
- <!-- 2017.01.09.16:57:35 -->
+ <!-- 2017.01.15.11:35:12 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1483981054</value>
+  <value>1484480112</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -1051,7 +1051,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.EXCEPTION_ADDR</name>
-   <value>0x00002820</value>
+   <value>0x00001020</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.FLUSHDA_SUPPORTED</name>
@@ -1099,7 +1099,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.RESET_ADDR</name>
-   <value>0x00002800</value>
+   <value>0x00001000</value>
   </assignment>
   <assignment>
    <name>embeddedsw.configuration.HDLSimCachesCleared</name>
@@ -1123,7 +1123,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.configuration.exceptionSlave</name>
-   <value>nios2_qsys_0.jtag_debug_module</value>
+   <value>onchip_memory2_0.s1</value>
   </assignment>
   <assignment>
    <name>embeddedsw.configuration.resetOffset</name>
@@ -1131,7 +1131,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.configuration.resetSlave</name>
-   <value>nios2_qsys_0.jtag_debug_module</value>
+   <value>onchip_memory2_0.s1</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -1147,7 +1147,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.ALTR,exception-addr</name>
-   <value>0x00002820</value>
+   <value>0x00001020</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.ALTR,implementation</name>
@@ -1155,7 +1155,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.ALTR,reset-addr</name>
-   <value>0x00002800</value>
+   <value>0x00001000</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.clock-frequency</name>
@@ -1631,7 +1631,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="resetSlave">
    <type>java.lang.String</type>
-   <value>nios2_qsys_0.jtag_debug_module</value>
+   <value>onchip_memory2_0.s1</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -1647,7 +1647,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="exceptionSlave">
    <type>java.lang.String</type>
-   <value>nios2_qsys_0.jtag_debug_module</value>
+   <value>onchip_memory2_0.s1</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -1975,7 +1975,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="resetAbsoluteAddr">
    <type>int</type>
-   <value>10240</value>
+   <value>4096</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -1983,7 +1983,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="exceptionAbsoluteAddr">
    <type>int</type>
-   <value>10272</value>
+   <value>4128</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -3662,7 +3662,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.EXCEPTION_ADDR</name>
-   <value>0x00002820</value>
+   <value>0x00001020</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.FLUSHDA_SUPPORTED</name>
@@ -3710,7 +3710,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.RESET_ADDR</name>
-   <value>0x00002800</value>
+   <value>0x00001000</value>
   </assignment>
   <assignment>
    <name>embeddedsw.configuration.HDLSimCachesCleared</name>
@@ -3734,7 +3734,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.configuration.exceptionSlave</name>
-   <value>nios2_qsys_1.jtag_debug_module</value>
+   <value>onchip_memory2_1.s1</value>
   </assignment>
   <assignment>
    <name>embeddedsw.configuration.resetOffset</name>
@@ -3742,7 +3742,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.configuration.resetSlave</name>
-   <value>nios2_qsys_1.jtag_debug_module</value>
+   <value>onchip_memory2_1.s1</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -3758,7 +3758,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.ALTR,exception-addr</name>
-   <value>0x00002820</value>
+   <value>0x00001020</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.ALTR,implementation</name>
@@ -3766,7 +3766,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.ALTR,reset-addr</name>
-   <value>0x00002800</value>
+   <value>0x00001000</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.clock-frequency</name>
@@ -4242,7 +4242,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="resetSlave">
    <type>java.lang.String</type>
-   <value>nios2_qsys_1.jtag_debug_module</value>
+   <value>onchip_memory2_1.s1</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -4258,7 +4258,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="exceptionSlave">
    <type>java.lang.String</type>
-   <value>nios2_qsys_1.jtag_debug_module</value>
+   <value>onchip_memory2_1.s1</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -4586,7 +4586,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="resetAbsoluteAddr">
    <type>int</type>
-   <value>10240</value>
+   <value>4096</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -4594,7 +4594,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="exceptionAbsoluteAddr">
    <type>int</type>
-   <value>10272</value>
+   <value>4128</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -10209,14 +10209,6 @@ parameters are a RESULT of the module parameters. -->
  </connection>
  <plugin>
   <instanceCount>2</instanceCount>
-  <name>clock_source</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Clock Source</displayName>
-  <version>13.1</version>
- </plugin>
- <plugin>
-  <instanceCount>2</instanceCount>
   <name>clock_sink</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -10224,19 +10216,35 @@ parameters are a RESULT of the module parameters. -->
   <version>13.1</version>
  </plugin>
  <plugin>
-  <instanceCount>6</instanceCount>
-  <name>avalon_slave</name>
+  <instanceCount>2</instanceCount>
+  <name>reset_sink</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Avalon Memory Mapped Slave</displayName>
+  <displayName>Reset Input</displayName>
   <version>13.1</version>
  </plugin>
  <plugin>
-  <instanceCount>8</instanceCount>
-  <name>conduit_end</name>
+  <instanceCount>6</instanceCount>
+  <name>reset_sink</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Conduit</displayName>
+  <displayName>Reset Input</displayName>
+  <version>13.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>2</instanceCount>
+  <name>altera_nios2_qsys</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IModule</subtype>
+  <displayName>Nios II Processor</displayName>
+  <version>13.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>10</instanceCount>
+  <name>avalon</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IConnection</subtype>
+  <displayName>Avalon Memory Mapped Connection</displayName>
   <version>13.1</version>
  </plugin>
  <plugin>
@@ -10249,34 +10257,18 @@ parameters are a RESULT of the module parameters. -->
  </plugin>
  <plugin>
   <instanceCount>2</instanceCount>
-  <name>altera_avalon_onchip_memory2</name>
+  <name>Can_controller</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>On-Chip Memory (RAM or ROM)</displayName>
-  <version>13.1</version>
- </plugin>
- <plugin>
-  <instanceCount>2</instanceCount>
-  <name>reset_source</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Reset Output</displayName>
-  <version>13.1</version>
+  <displayName>Can_controller</displayName>
+  <version>1.0</version>
  </plugin>
  <plugin>
   <instanceCount>6</instanceCount>
-  <name>reset_sink</name>
+  <name>clock_sink</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Reset Input</displayName>
-  <version>13.1</version>
- </plugin>
- <plugin>
-  <instanceCount>10</instanceCount>
-  <name>avalon</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IConnection</subtype>
-  <displayName>Avalon Memory Mapped Connection</displayName>
+  <displayName>Clock Input</displayName>
   <version>13.1</version>
  </plugin>
  <plugin>
@@ -10288,43 +10280,19 @@ parameters are a RESULT of the module parameters. -->
   <version>13.1</version>
  </plugin>
  <plugin>
-  <instanceCount>2</instanceCount>
-  <name>clock_source</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Clock Output</displayName>
-  <version>13.1</version>
- </plugin>
- <plugin>
-  <instanceCount>2</instanceCount>
-  <name>altera_nios2_qsys</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Nios II Processor</displayName>
-  <version>13.1</version>
- </plugin>
- <plugin>
-  <instanceCount>2</instanceCount>
-  <name>reset_sink</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Reset Input</displayName>
-  <version>13.1</version>
- </plugin>
- <plugin>
-  <instanceCount>2</instanceCount>
-  <name>interrupt_receiver</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Interrupt Receiver</displayName>
-  <version>13.1</version>
- </plugin>
- <plugin>
   <instanceCount>6</instanceCount>
-  <name>clock_sink</name>
+  <name>clock</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IConnection</subtype>
+  <displayName>Clock Connection</displayName>
+  <version>13.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>2</instanceCount>
+  <name>reset_source</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Clock Input</displayName>
+  <displayName>Reset Output</displayName>
   <version>13.1</version>
  </plugin>
  <plugin>
@@ -10344,6 +10312,54 @@ parameters are a RESULT of the module parameters. -->
   <version>13.1</version>
  </plugin>
  <plugin>
+  <instanceCount>2</instanceCount>
+  <name>clock_source</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Clock Output</displayName>
+  <version>13.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>8</instanceCount>
+  <name>conduit_end</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Conduit</displayName>
+  <version>13.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>2</instanceCount>
+  <name>interrupt_receiver</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Interrupt Receiver</displayName>
+  <version>13.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>2</instanceCount>
+  <name>nios_custom_instruction_master</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Custom Instruction Master</displayName>
+  <version>13.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>2</instanceCount>
+  <name>clock_source</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IModule</subtype>
+  <displayName>Clock Source</displayName>
+  <version>13.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>6</instanceCount>
+  <name>avalon_slave</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Avalon Memory Mapped Slave</displayName>
+  <version>13.1</version>
+ </plugin>
+ <plugin>
   <instanceCount>4</instanceCount>
   <name>conduit</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
@@ -10353,26 +10369,10 @@ parameters are a RESULT of the module parameters. -->
  </plugin>
  <plugin>
   <instanceCount>2</instanceCount>
-  <name>Can_controller</name>
+  <name>altera_avalon_onchip_memory2</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Can_controller</displayName>
-  <version>1.0</version>
- </plugin>
- <plugin>
-  <instanceCount>6</instanceCount>
-  <name>clock</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IConnection</subtype>
-  <displayName>Clock Connection</displayName>
-  <version>13.1</version>
- </plugin>
- <plugin>
-  <instanceCount>2</instanceCount>
-  <name>nios_custom_instruction_master</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Custom Instruction Master</displayName>
+  <displayName>On-Chip Memory (RAM or ROM)</displayName>
   <version>13.1</version>
  </plugin>
  <reportVersion>13.1 162</reportVersion>
